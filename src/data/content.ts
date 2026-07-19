@@ -218,6 +218,12 @@ export const leadership = [
     note: 'Mentor a team of UGC creators and drive short-form content strategy to grow the company’s reach and brand awareness.',
   },
   {
+    org: 'ThinkNeuro, LLC',
+    role: 'Co-Lead, User Generated Content',
+    period: 'Jan 2026 — Present',
+    note: 'Co-led short-form content to grow ThinkNeuro’s digital presence — 80K+ views across the inaugural cohort — and mentored creators on video quality, science communication, and audience engagement.',
+  },
+  {
     org: 'Common Ground Foundation',
     role: 'Student Ambassador',
     period: 'Jan 2026 — Jul 2026',
