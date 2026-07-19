@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <rect width="1200" height="1200" fill="#0a0e17"/>
+  <g stroke="#38d6c4" stroke-opacity="0.14" stroke-width="1.6">
+    <line x1="120" y1="360" x2="330" y2="315"/>
+    <line x1="330" y1="315" x2="540" y2="405"/>
+    <line x1="540" y1="405" x2="780" y2="345"/>
+    <line x1="780" y1="345" x2="1060" y2="430"/>
+    <line x1="1060" y1="430" x2="1000" y2="820"/>
+    <line x1="1000" y1="820" x2="720" y2="880"/>
+    <line x1="720" y1="880" x2="430" y2="840"/>
+    <line x1="430" y1="840" x2="180" y2="760"/>
+    <line x1="180" y1="760" x2="120" y2="360"/>
+    <line x1="430" y1="840" x2="540" y2="405"/>
+    <line x1="780" y1="345" x2="720" y2="880"/>
+  </g>
+  <g fill="#38d6c4" fill-opacity="0.55">
+    <circle cx="120" cy="360" r="7"/><circle cx="330" cy="315" r="9"/>
+    <circle cx="540" cy="405" r="6"/><circle cx="780" cy="345" r="8"/>
+    <circle cx="1060" cy="430" r="7"/><circle cx="1000" cy="820" r="8"/>
+    <circle cx="720" cy="880" r="6"/><circle cx="430" cy="840" r="7"/>
+    <circle cx="180" cy="760" r="9"/>
+  </g>
+  <text x="100" y="580" font-family="Georgia, 'Times New Roman', serif" font-size="94" font-weight="600" fill="#e7ecf5">Kaleb Rodriguez</text>
+  <text x="104" y="645" font-family="'IBM Plex Mono', 'Courier New', monospace" font-size="27" letter-spacing="7" fill="#38d6c4">NEUROSCIENCE &#215; SOFTWARE &#183; TAMPA, FL</text>
+  <text x="102" y="720" font-family="Georgia, serif" font-size="36" fill="#8792a6">Student researcher studying neurodegeneration</text>
+  <text x="102" y="770" font-family="Georgia, serif" font-size="36" fill="#8792a6">and building software that reaches real users.</text>
+</svg>
