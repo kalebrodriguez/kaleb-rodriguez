@@ -122,12 +122,12 @@ export const research = [
     title:
       'Operational parallels between biologically-informed machine learning and dopaminergic / acetylcholinergic mechanisms',
     status: 'completed',
-    meta: 'Poster & oral defense · Spring 2026',
+    meta: 'Poster · NYC Neuromodulation & World Neurology 2026',
     org: 'ThinkNeuro',
     link: `${import.meta.env.BASE_URL}operational-parallels-poster.pdf`,
     linkLabel: 'View the poster',
     plain:
-      'Investigated how closely machine-learning models resemble the neuronal mechanisms behind error-based learning and memory, presented as a poster and oral defense at the Spring Research Symposium.',
+      'Investigated how closely machine-learning models resemble the neuronal mechanisms behind error-based learning and memory. Accepted for poster presentation at the 2026 NYC Neuromodulation Conference and the World Neurology Congress 2026, after a poster and oral defense at the ThinkNeuro Spring Research Symposium.',
   },
   {
     title: 'Predicting hemolytic peptide activity with protein language models',
