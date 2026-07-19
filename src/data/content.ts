@@ -104,6 +104,7 @@ export const research = [
     status: 'published',
     meta: 'Scoping review · Jul 2026',
     org: 'ThinkNeuro',
+    link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
     plain:
       'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease, synthesizing evidence across the published literature.',
   },
