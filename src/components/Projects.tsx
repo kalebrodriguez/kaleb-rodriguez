@@ -27,8 +27,11 @@ export function Projects() {
               />
             </div>
             <div className="mb-4 flex items-center gap-3">
-              <StatusTag status={p.status} />
-              <span className="text-xs text-muted">· {p.kind}</span>
+              {p.status !== 'active' && <StatusTag status={p.status} />}
+              <span className="text-xs text-muted">
+                {p.status !== 'active' ? '· ' : ''}
+                {p.kind}
+              </span>
             </div>
             <p className="flex-1 text-sm leading-relaxed text-muted">{p.summary}</p>
             <ul className="mt-5 flex flex-wrap gap-2">
