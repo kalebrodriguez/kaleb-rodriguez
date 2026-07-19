@@ -3,6 +3,7 @@ import { statusLabels } from '../data/content'
 const tone: Record<string, string> = {
   active: 'var(--signal)',
   shipped: 'var(--signal)',
+  published: 'var(--signal)',
   ongoing: 'var(--stain)',
   prototype: 'var(--muted)',
   concept: 'var(--muted)',

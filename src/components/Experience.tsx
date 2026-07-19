@@ -37,7 +37,10 @@ export function Experience() {
                   className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full"
                   style={{ backgroundColor: 'var(--stain)' }}
                 />
-                <div className="font-display text-lg font-500">{l.org}</div>
+                <div className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  {l.period}
+                </div>
+                <div className="mt-1 font-display text-lg font-500">{l.org}</div>
                 <div className="text-sm text-signal">{l.role}</div>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{l.note}</p>
               </li>

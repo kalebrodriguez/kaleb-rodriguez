@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail } from 'lucide-react'
-import { GithubIcon } from './icons'
+import { GithubIcon, LinkedinIcon } from './icons'
 import { Connectome } from './Connectome'
 import { profile, focusAreas } from '../data/content'
 
@@ -69,6 +69,14 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
           >
             <GithubIcon size={16} /> GitHub
+          </a>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+          >
+            <LinkedinIcon size={16} /> LinkedIn
           </a>
           <a
             href={`mailto:${profile.email}`}

@@ -1,6 +1,6 @@
-// All site content. Sourced only from public-facing material (resume, public
-// GitHub repos, project summaries). No private records, contact numbers, or
-// unpublished research data are included here.
+// All site content. Sourced only from public-facing material (public résumé,
+// public LinkedIn profile, public GitHub repos, project summaries). No private
+// records, contact numbers, credential IDs, or unpublished research data.
 
 export const profile = {
   name: 'Kaleb Rodriguez',
@@ -8,32 +8,33 @@ export const profile = {
   location: 'Tampa, Florida',
   email: 'kalebrodriguez@usf.edu',
   github: 'https://github.com/kalebrodriguez',
+  linkedin: 'https://www.linkedin.com/in/kaleb-rodriguez-8212a235a/',
   tagline:
     'High-school researcher studying neurodegeneration and building software that reaches real users.',
   intro:
-    'I split my time between the questions behind neurodegenerative disease and the tools that help people live with it. That means reading omics data and mitophagy pathways on one screen, and shipping assistive apps on the other. I am a dual-enrollment student at the University of South Florida and Hillsborough Community College, graduating high school in 2027.',
+    'I split my time between the questions behind neurodegenerative disease and the tools that help people live with it — protein purification and mitophagy pathways on one screen, and assistive software on the other. I am a dual-enrollment student at the University of South Florida, Hillsborough College, and the University of Florida, graduating high school in 2027.',
 }
 
 export const focusAreas = [
   {
     label: 'Neurodegeneration',
     detail:
-      'Parkinson’s mitophagy (PINK1/Parkin), ALS and TDP-43, and how error-based learning maps onto dopaminergic and cholinergic circuits.',
+      'Parkinson’s mitophagy (PINK1/Parkin) — a published scoping review — plus Alzheimer’s biomarker detection and how error-based learning maps onto neuronal circuits.',
   },
   {
-    label: 'Bioinformatics',
+    label: 'Computational biology',
     detail:
-      'Analyzing omics datasets — including spaceflight biology through NASA GeneLab — and applying machine learning to biomedical data.',
+      'Protein language models for peptide activity, omics analysis through NASA GeneLab, and NLP for health-misinformation detection.',
+  },
+  {
+    label: 'Wet lab',
+    detail:
+      'Expressing and purifying elastin-like polypeptide fusion proteins for drug delivery and regenerative medicine at USF.',
   },
   {
     label: 'Assistive technology',
     detail:
       'Software people actually use: dementia companionship, medication adherence, posture correction, and verified service tracking.',
-  },
-  {
-    label: 'Wet lab',
-    detail:
-      'Hands-on work with elastin-like polypeptide fusion proteins and H&E histology imaging.',
   },
 ]
 
@@ -69,7 +70,7 @@ export const projects = [
   {
     name: 'MedAlert',
     status: 'prototype',
-    kind: 'iOS app',
+    kind: 'iOS app · built at ThinkNeuro',
     summary:
       'A medication-reminder app focused on adherence: scheduled dosing, interval-based logic, and notification alerts, with an interface kept deliberately simple for real patient use.',
     stack: ['Swift', 'iOS', 'Local notifications'],
@@ -95,63 +96,101 @@ export const projects = [
   },
 ]
 
+// status: published | ongoing | completed
 export const research = [
   {
     title:
       'Nanoparticle-mediated modulation of the PINK1/Parkin mitophagy pathway in Parkinson’s disease',
-    status: 'ongoing',
+    status: 'published',
+    meta: 'Scoping review · Jul 2026',
     org: 'ThinkNeuro',
     plain:
-      'A systematic review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease. The work involves structured evidence extraction and risk-of-bias assessment across the published literature.',
+      'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease, synthesizing evidence across the published literature.',
   },
   {
     title:
-      'Operational parallels between machine learning and dopaminergic / cholinergic error-based learning',
+      'AI-driven vs. traditional approaches for early neural biomarker detection in Alzheimer’s disease',
     status: 'ongoing',
+    meta: 'Systematic review · leading a team of 6',
+    org: 'Synthica',
+    plain:
+      'Leading a six-person team on a systematic review comparing machine-learning and conventional clinical methods for catching Alzheimer’s biomarkers early — working toward peer-reviewed publication.',
+  },
+  {
+    title:
+      'Operational parallels between biologically-informed machine learning and dopaminergic / acetylcholinergic mechanisms',
+    status: 'completed',
+    meta: 'Poster & oral defense · Spring 2026',
     org: 'ThinkNeuro',
     plain:
-      'Investigating how closely machine-learning models resemble the neuronal mechanisms behind error-based learning and memory. Presented as a research abstract and poster, with analysis done in R.',
+      'Investigated how closely machine-learning models resemble the neuronal mechanisms behind error-based learning and memory, presented as a poster and oral defense at the Spring Research Symposium.',
   },
   {
-    title: 'Neurodegeneration: ALS, TDP-43, and motor-neuron disease',
+    title: 'Predicting hemolytic peptide activity with protein language models',
     status: 'ongoing',
-    org: 'Independent',
+    meta: 'Computational biology',
+    org: 'USF Health Taneja College of Pharmacy',
     plain:
-      'Reading and synthesizing the biology of ALS — protein aggregation and axonal transport — as the throughline connecting my research interests to the assistive tools I build.',
+      'Exploring fine-tuning strategies for protein language models to predict whether a peptide will rupture red blood cells, optimizing performance on experimental peptide datasets.',
   },
   {
-    title: 'Elastin-like polypeptide fusion proteins',
-    status: 'completed',
-    org: 'Wet lab',
+    title: 'Detecting mental-health misinformation in online forums',
+    status: 'ongoing',
+    meta: 'Natural language processing',
+    org: 'Oakland University',
     plain:
-      'Wet-lab experience expressing and purifying elastin-like polypeptide fusion proteins, alongside H&E histology imaging.',
+      'NLP research on flagging harmful or misleading advice in depression-related online communities — spanning literature review, dataset exploration, and computational approaches.',
   },
 ]
 
 export const experience = [
   {
-    org: 'NASA GeneLab',
-    role: 'Student Research Intern',
-    period: 'Mar 2026 — Present',
-    note: 'Selected for a competitive bioinformatics and space-biology program analyzing omics datasets from spaceflight experiments.',
+    org: 'USF College of Engineering',
+    role: 'Laboratory Research Assistant',
+    period: 'Jun 2026 — Present',
+    note: 'Wet-lab research on elastin-like polypeptide (ELP) fusion proteins for drug delivery and regenerative medicine — bacterial expression, sonication, and purification by inverse temperature cycling in the Protein Engineering & Dynamic Living Systems Lab.',
   },
   {
-    org: 'MIT Beaver Works Summer Institute — Medlytics',
-    role: 'Intern',
+    org: 'USF Health Taneja College of Pharmacy',
+    role: 'Student Researcher',
     period: 'Feb 2026 — Present',
-    note: 'Applying data science and machine learning to real healthcare and biomedical datasets in Python.',
+    note: 'Computational-biology research predicting hemolytic peptide activity with protein language models and fine-tuning strategies.',
+  },
+  {
+    org: 'MIT CSAIL',
+    role: 'Research Intern — MANTIS',
+    period: 'May 2026 — Present',
+    note: 'Working on the Mantis platform: cognitive cartography for multimodal AI and agentic reasoning.',
+  },
+  {
+    org: 'Oakland University',
+    role: 'Research Intern',
+    period: 'May 2026 — Present',
+    note: 'NLP research on detecting mental-health misinformation in online forums with Dr. Weicheng Ma.',
+  },
+  {
+    org: 'Synthica',
+    role: 'Lead Researcher',
+    period: 'Apr 2026 — Present',
+    note: 'Leading a six-person team on a systematic review of AI vs. traditional early Alzheimer’s biomarker detection, working toward publication.',
   },
   {
     org: 'ThinkNeuro, LLC',
-    role: 'Research Intern & Software Engineering Intern',
+    role: 'Research Intern & Co-Associate',
     period: 'Jan 2026 — Present',
-    note: 'Running neurodegeneration research and co-leading a content initiative, while building MedAlert on a small dev team using Git and GitHub.',
+    note: 'Help lead a student neuroscience team on neurodegenerative-disease research through literature review and bibliometric analysis, contributed to a published scoping review, and built MedAlert as a software engineering intern.',
+  },
+  {
+    org: 'NASA GeneLab',
+    role: 'Student Intern',
+    period: 'Jun 2026 — Jul 2026',
+    note: 'Selected for a competitive bioinformatics and space-biology program analyzing omics datasets from spaceflight experiments.',
   },
   {
     org: 'AdventHealth Tampa — Progressive Care Unit',
-    role: 'Clinical Support Assistant',
+    role: 'PCU Nursing Support Volunteer',
     period: 'Dec 2025 — Present',
-    note: 'Supporting nursing staff with patient mobility, comfort rounds, and a safe, well-stocked care environment.',
+    note: 'Support nursing staff with patient mobility, comfort rounds, and a safe, well-stocked care environment.',
   },
 ]
 
@@ -159,39 +198,75 @@ export const leadership = [
   {
     org: 'Environmental Conservation Organization (ECO)',
     role: 'President',
-    note: 'Lead a student environmental club — organizing cleanups, e-waste drives, and outreach with Keep Tampa Bay Beautiful.',
+    period: 'May 2025 — May 2026',
+    note: 'Led a student environmental club — organizing cleanups, e-waste drives, and outreach with Keep Tampa Bay Beautiful.',
   },
   {
     org: 'Back on Track America — Middleton Chapter',
     role: 'Chapter Lead',
+    period: 'Dec 2025 — Present',
     note: 'Coordinate food-insecurity efforts and hunger-relief events, including partnerships with Metropolitan Ministries.',
+  },
+  {
+    org: 'Synthica',
+    role: 'Head of User Generated Content',
+    period: 'Apr 2026 — Present',
+    note: 'Mentor a team of UGC creators and drive short-form content strategy to grow the company’s reach and brand awareness.',
   },
   {
     org: 'Common Ground Foundation',
     role: 'Student Ambassador',
-    note: 'Connect ESL and immigrant students with tutoring and academic support for a national education-equity nonprofit.',
+    period: 'Jan 2026 — Jul 2026',
+    note: 'Connected ESL and immigrant students with tutoring and academic support for a national education-equity nonprofit.',
   },
   {
     org: 'UOTY',
     role: 'Founding Member & Head of PR',
+    period: 'Jul 2020 — Present',
     note: 'Helped shape a youth organization’s mission and ran its communications and digital media.',
+  },
+]
+
+export const education = [
+  {
+    org: 'University of South Florida',
+    detail: 'Dual enrollment',
+    period: 'Aug 2025 — May 2027',
+  },
+  {
+    org: 'Hillsborough College',
+    detail: 'Dual enrollment',
+    period: 'May 2024 — May 2027',
+  },
+  {
+    org: 'University of Florida',
+    detail: 'Dual enrollment',
+    period: 'Ongoing',
+  },
+  {
+    org: 'Middleton High School',
+    detail: 'Cyber Security (CSIT) Magnet',
+    period: 'Aug 2023 — May 2027',
   },
 ]
 
 export const skills = {
   Languages: ['Python', 'JavaScript', 'TypeScript', 'Java', 'Swift', 'R', 'HTML', 'CSS'],
   'Research & data': [
+    'Computational biology',
+    'Protein language models',
     'Bibliometric research',
-    'Data analysis',
-    'Machine learning',
-    'Omics datasets',
     'Systematic review',
+    'NLP',
+    'Data analysis',
   ],
+  'Wet lab': ['Protein expression', 'Purification (ITC)', 'Biosafety', 'Lab safety'],
   Tools: ['Git', 'GitHub', 'Networking fundamentals', 'Cybersecurity fundamentals'],
   Spoken: ['English (native)', 'Amharic (proficient)'],
 }
 
 export const awards = [
+  'BigFuture National Recognition Program — College Board (2026)',
   'State Finalist (7th) — TSA Biotechnology Design, Florida State Leadership Conference (2026)',
   'HOSA CPR/First Aid — 1st Place, Winter Leadership Conference (2026)',
   'FBLA Parliamentary Procedures — 2nd Place, District Leadership Conference (2026)',
@@ -201,12 +276,18 @@ export const awards = [
 ]
 
 export const certifications = [
+  'NASA Open Science Essentials — NASA',
+  'USF Biosafety Principles & Practices',
+  'USF Lab Safety Training',
+  'USF Biomedical Waste Training',
   'Python Coding Specialist — Knowledge Pillars',
   'Java Coding Specialist — Knowledge Pillars',
   'CompTIA IT Fundamentals (ITF+)',
-  'IT Specialist — Networking & Device Configuration',
+  'IT Specialist — Networking',
+  'IT Specialist — Device Configuration & Management',
   'PMI Project Management Ready',
   'Adult First Aid / CPR / AED — American Red Cross',
+  'AEST Agriculture Associate',
 ]
 
 export const statusLabels: Record<string, string> = {
@@ -216,4 +297,5 @@ export const statusLabels: Record<string, string> = {
   prototype: 'Prototype',
   concept: 'Concept',
   completed: 'Completed',
+  published: 'Published',
 }

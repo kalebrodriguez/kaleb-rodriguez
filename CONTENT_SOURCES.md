@@ -9,6 +9,8 @@ reproduced here or in the repository.
 
 - **Public résumé** — education, experience, activities, skills, honors, and
   certifications.
+- **Public LinkedIn profile** — current roles, titles, dates, education, and
+  listed publications (used to keep the site accurate and up to date).
 - **Public project summaries** — high-level descriptions of personal projects
   (DigitalTwin, Kora, ClearCredit, MedAlert, Posture+, Cramb).
 - **Public GitHub repositories** — project names and one-line descriptions from

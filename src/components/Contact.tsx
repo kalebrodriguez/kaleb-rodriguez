@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Mail } from 'lucide-react'
-import { GithubIcon } from './icons'
+import { GithubIcon, LinkedinIcon } from './icons'
 import { profile } from '../data/content'
 
 export function Contact() {
@@ -36,6 +36,15 @@ export function Contact() {
               className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
             >
               <GithubIcon size={16} /> github.com/kalebrodriguez
+              <ArrowUpRight size={14} />
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+            >
+              <LinkedinIcon size={16} /> LinkedIn
               <ArrowUpRight size={14} />
             </a>
           </div>

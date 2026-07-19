@@ -18,6 +18,11 @@ export function Research() {
               <span className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
                 {r.org}
               </span>
+              {r.meta && (
+                <span className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  · {r.meta}
+                </span>
+              )}
             </div>
             <h3 className="font-display text-xl font-500 leading-snug">{r.title}</h3>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">
