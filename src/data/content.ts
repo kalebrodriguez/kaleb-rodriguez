@@ -105,6 +105,7 @@ export const research = [
     meta: 'Scoping review · Jul 2026',
     org: 'ThinkNeuro',
     link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
+    linkLabel: 'Read the paper',
     plain:
       'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease, synthesizing evidence across the published literature.',
   },
@@ -123,6 +124,8 @@ export const research = [
     status: 'completed',
     meta: 'Poster & oral defense · Spring 2026',
     org: 'ThinkNeuro',
+    link: `${import.meta.env.BASE_URL}operational-parallels-poster.pdf`,
+    linkLabel: 'View the poster',
     plain:
       'Investigated how closely machine-learning models resemble the neuronal mechanisms behind error-based learning and memory, presented as a poster and oral defense at the Spring Research Symposium.',
   },

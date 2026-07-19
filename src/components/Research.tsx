@@ -38,7 +38,7 @@ export function Research() {
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">{r.plain}</p>
               {'link' in r && r.link && (
                 <span className="mt-3 inline-block font-mono text-[0.68rem] uppercase tracking-widest text-signal">
-                  Read the paper →
+                  {('linkLabel' in r && r.linkLabel) || 'Open'} →
                 </span>
               )}
             </>
