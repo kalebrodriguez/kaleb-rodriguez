@@ -1,8 +1,12 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { Award } from 'lucide-react'
 import { Section } from './Section'
 import { skills, awards, certifications } from '../data/content'
+import { staggerContainer, staggerItem } from './motion'
 
 export function SkillsAwards() {
+  const reduce = useReducedMotion()
+
   return (
     <Section
       id="skills"
@@ -10,8 +14,17 @@ export function SkillsAwards() {
       title="Toolkit, honors, and credentials."
       alt
     >
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-lg border border-line bg-surface p-6">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={reduce ? undefined : staggerContainer}
+        className="grid gap-5 md:grid-cols-2"
+      >
+        <motion.div
+          variants={reduce ? undefined : staggerItem}
+          className="rounded-lg border border-line bg-surface p-6"
+        >
           <h3 className="fig-label mb-5">Skills</h3>
           <dl className="space-y-4">
             {Object.entries(skills).map(([group, items]) => (
@@ -23,7 +36,7 @@ export function SkillsAwards() {
                   {items.map((s) => (
                     <span
                       key={s}
-                      className="rounded border border-line px-2.5 py-1 text-xs text-app"
+                      className="rounded border border-line px-2.5 py-1 text-xs text-app transition-colors hover:border-[var(--signal-deep)] hover:text-signal"
                     >
                       {s}
                     </span>
@@ -32,10 +45,13 @@ export function SkillsAwards() {
               </div>
             ))}
           </dl>
-        </div>
+        </motion.div>
 
         <div className="flex flex-col gap-5">
-          <div className="rounded-lg border border-line bg-surface p-6">
+          <motion.div
+            variants={reduce ? undefined : staggerItem}
+            className="rounded-lg border border-line bg-surface p-6"
+          >
             <h3 className="fig-label mb-5">Honors & awards</h3>
             <ul className="space-y-3">
               {awards.map((a) => (
@@ -45,8 +61,11 @@ export function SkillsAwards() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="rounded-lg border border-line bg-surface p-6">
+          </motion.div>
+          <motion.div
+            variants={reduce ? undefined : staggerItem}
+            className="rounded-lg border border-line bg-surface p-6"
+          >
             <h3 className="fig-label mb-4">Certifications</h3>
             <ul className="flex flex-wrap gap-2">
               {certifications.map((c) => (
@@ -58,9 +77,9 @@ export function SkillsAwards() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </Section>
   )
 }

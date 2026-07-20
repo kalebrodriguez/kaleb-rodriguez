@@ -10,12 +10,14 @@ const tone: Record<string, string> = {
   completed: 'var(--muted)',
 }
 
+const live = new Set(['active', 'ongoing', 'published'])
+
 export function StatusTag({ status }: { status: string }) {
   const color = tone[status] ?? 'var(--muted)'
   return (
     <span className="inline-flex items-center gap-1.5 font-mono text-[0.68rem] uppercase tracking-widest">
       <span
-        className="inline-block h-1.5 w-1.5 rounded-full"
+        className={`inline-block h-1.5 w-1.5 rounded-full ${live.has(status) ? 'status-pulse' : ''}`}
         style={{ backgroundColor: color }}
       />
       <span style={{ color }}>{statusLabels[status] ?? status}</span>

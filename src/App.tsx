@@ -7,6 +7,7 @@ import { Experience } from './components/Experience'
 import { SkillsAwards } from './components/SkillsAwards'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { ScrollProgress } from './components/ScrollProgress'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       >
         Skip to content
       </a>
+      <ScrollProgress />
       <Nav />
       <main>
         <Hero />
