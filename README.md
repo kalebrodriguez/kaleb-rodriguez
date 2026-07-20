@@ -10,8 +10,9 @@ in a single, fast, accessible page.
 ## Design
 
 The visual direction is a "specimen field / research journal": a dark
-microscopy-inspired canvas with a fluorescence-cyan signal accent, an
-editorial serif masthead (Fraunces), and section eyebrows set as figure labels
+microscopy-inspired canvas with a fluorescence-cyan signal accent, a
+geometric futuristic masthead (Syne), body type in Space Grotesk, and section
+eyebrows set as figure labels
 (`Fig. 01 — About`) that mirror the way figures are numbered in a paper. The
 signature element is an abstract **connectome** — a node/edge graph behind the
 hero. A light theme is fully supported and respects `prefers-color-scheme`.
@@ -25,7 +26,7 @@ hero. A light theme is fully supported and respects `prefers-color-scheme`.
 | Styling      | Tailwind CSS v4 (`@tailwindcss/vite`)    |
 | Motion       | Framer Motion (restrained, reveal-only)  |
 | Icons        | lucide-react (+ one inline GitHub mark)  |
-| Fonts        | Fraunces, IBM Plex Sans, IBM Plex Mono (self-hosted via `@fontsource`, no external requests) |
+| Fonts        | Syne, Space Grotesk, JetBrains Mono (self-hosted via `@fontsource`, no external requests) |
 | Hosting      | GitHub Pages via GitHub Actions          |
 
 Chosen over a heavier framework because the site is fully static, needs no

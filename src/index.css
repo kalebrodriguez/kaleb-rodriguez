@@ -1,19 +1,19 @@
 @import 'tailwindcss';
 
 /* Self-hosted fonts (no external requests) */
-@import '@fontsource/fraunces/400.css';
-@import '@fontsource/fraunces/500.css';
-@import '@fontsource/fraunces/600.css';
-@import '@fontsource/ibm-plex-sans/400.css';
-@import '@fontsource/ibm-plex-sans/500.css';
-@import '@fontsource/ibm-plex-sans/600.css';
-@import '@fontsource/ibm-plex-mono/400.css';
-@import '@fontsource/ibm-plex-mono/500.css';
+@import '@fontsource/syne/500.css';
+@import '@fontsource/syne/600.css';
+@import '@fontsource/syne/700.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
 
 @theme {
-  --font-display: 'Fraunces', ui-serif, Georgia, serif;
-  --font-sans: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   /* Specimen-field palette */
   --color-ink: #0a0e17;
@@ -78,6 +78,14 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom futuristic cursor (fine pointer only) */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
 ::selection {
   background: var(--signal);
   color: var(--bg);
@@ -106,7 +114,10 @@ body {
   border-radius: 999px;
 }
 
-.font-display { font-family: var(--font-display); }
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
 .font-mono { font-family: var(--font-mono); }
 .bg-app { background-color: var(--bg); }
 .bg-app-2 { background-color: var(--bg-2); }
