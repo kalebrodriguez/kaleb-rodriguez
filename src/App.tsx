@@ -12,6 +12,7 @@ import { KeywordMarquee } from './components/KeywordMarquee'
 import { StageCoordinates } from './components/StageCoordinates'
 import { ExcitationSpot } from './components/ExcitationSpot'
 import { Atmosphere } from './components/Atmosphere'
+import { CursorDot } from './components/CursorDot'
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
       <Atmosphere />
       <ScrollProgress />
       <ExcitationSpot />
+      <CursorDot />
       <StageCoordinates />
       <div className="relative z-10">
         <Nav />
