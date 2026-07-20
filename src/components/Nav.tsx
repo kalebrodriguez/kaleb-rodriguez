@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, Moon, Sun, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useTheme } from './useTheme'
 
 const links = [
@@ -14,12 +15,33 @@ export function Nav() {
   const { theme, toggle } = useTheme()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState<string>('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const ids = links.map(([, href]) => href.slice(1))
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el))
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
+        if (visible[0]?.target.id) setActive(`#${visible[0].target.id}`)
+      },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0.1, 0.35, 0.6] },
+    )
+
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -31,19 +53,34 @@ export function Nav() {
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <a href="#top" className="font-display text-lg font-500 tracking-tight">
-          Kaleb<span className="text-signal">.</span>Rodriguez
+          Kaleb
+          <span className="status-pulse inline-block text-signal">.</span>
+          Rodriguez
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
-          {links.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              className="font-mono text-xs uppercase tracking-widest text-muted transition-colors hover:text-app"
-            >
-              {label}
-            </a>
-          ))}
+          {links.map(([label, href]) => {
+            const isActive = active === href
+            return (
+              <a
+                key={href}
+                href={href}
+                className={`relative font-mono text-xs uppercase tracking-widest transition-colors ${
+                  isActive ? 'text-app' : 'text-muted hover:text-app'
+                }`}
+              >
+                {label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-px"
+                    style={{ backgroundColor: 'var(--signal)' }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            )
+          })}
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
@@ -80,7 +117,9 @@ export function Nav() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-3 font-mono text-sm uppercase tracking-widest text-muted last:border-0"
+                className={`border-b border-line py-3 font-mono text-sm uppercase tracking-widest last:border-0 ${
+                  active === href ? 'text-signal' : 'text-muted'
+                }`}
               >
                 {label}
               </a>

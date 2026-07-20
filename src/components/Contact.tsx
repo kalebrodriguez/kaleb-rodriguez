@@ -3,12 +3,18 @@ import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { profile } from '../data/content'
 import { ease } from './motion'
+import { SignalWave } from './SignalWave'
+import { FluorophoreDust } from './FluorophoreDust'
+import { FieldReticle } from './FieldReticle'
 
 export function Contact() {
   const reduce = useReducedMotion()
 
   return (
     <section id="contact" className="relative overflow-hidden border-t border-line">
+      <div className="pointer-events-none absolute inset-0 opacity-40">
+        <FluorophoreDust density={22} />
+      </div>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full field-drift"
@@ -17,6 +23,8 @@ export function Contact() {
             'radial-gradient(circle, color-mix(in srgb, var(--signal) 16%, transparent), transparent 68%)',
         }}
       />
+      <FieldReticle />
+      <SignalWave />
       <div className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 18 }}

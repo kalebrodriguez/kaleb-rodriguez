@@ -65,8 +65,9 @@ export function Research() {
                   href={r.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-hover group block p-6 sm:p-7"
+                  className="card-hover group relative block overflow-hidden p-6 sm:p-7"
                 >
+                  <span aria-hidden="true" className="scan-sweep" />
                   {inner}
                 </a>
               ) : (
