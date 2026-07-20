@@ -16,9 +16,13 @@ export function Section({ id, fig, title, children, alt }: Props) {
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 border-t border-line ${alt ? 'bg-app-2' : ''}`}
+      className={`relative scroll-mt-20 overflow-hidden border-t border-line ${alt ? 'bg-app-2' : ''}`}
     >
-      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 specimen-grid opacity-[0.35]"
+      />
+      <div className="relative mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <motion.div
           initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}

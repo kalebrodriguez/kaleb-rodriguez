@@ -2,6 +2,8 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { Connectome } from './Connectome'
+import { FieldReticle } from './FieldReticle'
+import { FluorophoreDust } from './FluorophoreDust'
 import { profile, focusAreas } from '../data/content'
 import { ease, staggerContainer, staggerItem } from './motion'
 
@@ -14,6 +16,9 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 opacity-70">
         <Connectome />
+      </div>
+      <div className="pointer-events-none absolute inset-0 opacity-60">
+        <FluorophoreDust density={36} />
       </div>
       <div
         className="pointer-events-none absolute inset-0 field-drift"
@@ -29,6 +34,7 @@ export function Hero() {
             'radial-gradient(120% 90% at 50% 0%, transparent 40%, var(--bg) 92%)',
         }}
       />
+      <FieldReticle />
 
       <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-36 sm:px-8 sm:pb-24 sm:pt-44">
         <motion.p
@@ -128,8 +134,12 @@ export function Hero() {
             <motion.div
               key={f.label}
               variants={reduce ? undefined : staggerItem}
-              className="bg-surface p-5"
+              className="group/focus relative overflow-hidden bg-surface p-5"
             >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,var(--signal),transparent)] transition-transform duration-500 group-hover/focus:scale-x-100"
+              />
               <dt className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
                 {f.label}
               </dt>

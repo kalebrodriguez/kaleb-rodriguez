@@ -34,6 +34,7 @@ export function Projects() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,var(--signal),transparent)] transition-transform duration-500 group-hover:scale-x-100"
             />
+            <span aria-hidden="true" className="scan-sweep" />
             <div className="mb-3 flex items-center justify-between gap-3">
               <h3 className="font-display text-2xl font-500">{p.name}</h3>
               <ArrowUpRight

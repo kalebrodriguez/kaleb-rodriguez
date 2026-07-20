@@ -124,6 +124,32 @@ body {
   background-color: var(--surface-2);
 }
 
+.specimen-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
+
+.scan-sweep {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    color-mix(in srgb, var(--signal) 14%, transparent) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+.group:hover .scan-sweep {
+  opacity: 1;
+  animation: scan-sweep 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 @keyframes pulse-node {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.9; }
@@ -139,6 +165,21 @@ body {
   50% { transform: translate3d(-1.5%, 1%, 0) scale(1.03); }
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes scan-sweep {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(120%); }
+}
+
+@keyframes signal-wave {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(-6px); opacity: 0.95; }
+}
+
 .status-pulse {
   animation: status-pulse 2.4s ease-in-out infinite;
   transform-origin: center;
@@ -149,6 +190,22 @@ body {
   will-change: transform;
 }
 
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+.signal-wave {
+  animation: signal-wave 5.5s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.signal-wave-delay {
+  animation: signal-wave 7s ease-in-out 0.8s infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -157,7 +214,14 @@ body {
     transition-duration: 0.001ms !important;
   }
   .field-drift,
-  .status-pulse {
+  .status-pulse,
+  .marquee-track,
+  .signal-wave,
+  .signal-wave-delay {
     animation: none !important;
+  }
+  .group:hover .scan-sweep {
+    animation: none !important;
+    opacity: 0 !important;
   }
 }
