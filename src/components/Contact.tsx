@@ -12,15 +12,27 @@ export function Contact() {
 
   return (
     <section id="contact" className="relative overflow-hidden border-t border-line">
-      <div className="pointer-events-none absolute inset-0 opacity-40">
-        <FluorophoreDust density={22} />
+      <div className="pointer-events-none absolute inset-0 opacity-45">
+        <FluorophoreDust density={26} />
       </div>
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full field-drift"
+        className="pointer-events-none absolute inset-0 specimen-grid opacity-30"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 top-1/2 h-80 w-80 -translate-y-1/2 rounded-full field-drift"
         style={{
           background:
-            'radial-gradient(circle, color-mix(in srgb, var(--signal) 16%, transparent), transparent 68%)',
+            'radial-gradient(circle, color-mix(in srgb, var(--signal) 18%, transparent), transparent 68%)',
+        }}
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-16 bottom-0 h-64 w-64 rounded-full field-drift"
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--stain) 14%, transparent), transparent 70%)',
         }}
       />
       <FieldReticle />
@@ -41,18 +53,14 @@ export function Contact() {
             neuroscience, bioinformatics, and health technology.
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <a
-              href={`mailto:${profile.email}`}
-              className="group inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-500 text-[var(--bg)] transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: 'var(--signal)' }}
-            >
+            <a href={`mailto:${profile.email}`} className="btn-primary group">
               <Mail size={16} /> {profile.email}
             </a>
             <a
               href={profile.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+              className="btn-ghost"
             >
               <GithubIcon size={16} /> github.com/kalebrodriguez
               <ArrowUpRight size={14} />
@@ -61,7 +69,7 @@ export function Contact() {
               href={profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+              className="btn-ghost"
             >
               <LinkedinIcon size={16} /> LinkedIn
               <ArrowUpRight size={14} />

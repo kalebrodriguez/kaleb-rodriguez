@@ -20,12 +20,15 @@ export function Research() {
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
         variants={reduce ? undefined : staggerContainer}
-        className="space-y-px overflow-hidden rounded-lg border border-line bg-[var(--line)]"
+        className="list-stack space-y-px"
       >
-        {research.map((r) => {
+        {research.map((r, i) => {
           const inner = (
             <>
+              <span className="accent-rail" aria-hidden="true" />
+              <span aria-hidden="true" className="scan-sweep" />
               <div className="mb-3 flex flex-wrap items-center gap-3">
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
                 <StatusTag status={r.status} />
                 <span className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
                   {r.org}
@@ -58,7 +61,6 @@ export function Research() {
             <motion.li
               key={r.title}
               variants={reduce ? undefined : staggerItem}
-              className="bg-surface"
             >
               {'link' in r && r.link ? (
                 <a
@@ -67,11 +69,10 @@ export function Research() {
                   rel="noopener noreferrer"
                   className="card-hover group relative block overflow-hidden p-6 sm:p-7"
                 >
-                  <span aria-hidden="true" className="scan-sweep" />
                   {inner}
                 </a>
               ) : (
-                <div className="p-6 sm:p-7">{inner}</div>
+                <div className="group relative p-6 sm:p-7">{inner}</div>
               )}
             </motion.li>
           )

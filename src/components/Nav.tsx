@@ -47,9 +47,13 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b transition-colors ${
-        scrolled ? 'bg-app/85 border-line backdrop-blur-md' : 'border-transparent'
+        scrolled ? 'border-line backdrop-blur-md' : 'border-transparent'
       }`}
-      style={scrolled ? { backgroundColor: 'color-mix(in srgb, var(--bg) 85%, transparent)' } : undefined}
+      style={
+        scrolled
+          ? { backgroundColor: 'color-mix(in srgb, var(--bg) 78%, transparent)' }
+          : undefined
+      }
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <a href="#top" className="font-display text-lg font-500 tracking-tight">
