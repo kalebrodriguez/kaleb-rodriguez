@@ -26,17 +26,21 @@ export function About() {
               whileInView="show"
               viewport={{ once: true, margin: '-40px' }}
               variants={reduce ? undefined : staggerContainer}
-              className="space-y-px overflow-hidden rounded-lg border border-line bg-[var(--line)]"
+              className="list-stack space-y-px"
             >
-              {education.map((e) => (
+              {education.map((e, i) => (
                 <motion.li
                   key={e.org}
                   variants={reduce ? undefined : staggerItem}
-                  className="flex items-baseline justify-between gap-4 bg-surface px-5 py-3 text-base"
+                  className="group relative flex items-baseline justify-between gap-4 px-5 py-3 text-base"
                 >
-                  <div>
-                    <span className="text-app">{e.org}</span>
-                    <span className="text-muted"> · {e.detail}</span>
+                  <span className="accent-rail" aria-hidden="true" />
+                  <div className="flex items-baseline gap-3">
+                    <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <span className="text-app">{e.org}</span>
+                      <span className="text-muted"> · {e.detail}</span>
+                    </div>
                   </div>
                   <span className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-widest text-muted">
                     {e.period}
@@ -51,23 +55,27 @@ export function About() {
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
           variants={reduce ? undefined : staggerContainer}
-          className="h-max space-y-px overflow-hidden rounded-lg border border-line bg-[var(--line)]"
+          className="panel h-max !p-0"
         >
           {[
             ['Based in', profile.location],
             ['Studying', 'Dual enrollment — USF, HCC & UF'],
             ['Graduating', 'High school, 2027'],
             ['Working in', 'Neurodegeneration & assistive tech'],
-          ].map(([k, v]) => (
+          ].map(([k, v], i) => (
             <motion.li
               key={k}
               variants={reduce ? undefined : staggerItem}
-              className="bg-surface px-5 py-4"
+              className="group/focus relative border-b border-line px-5 py-4 last:border-0"
             >
-              <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
-                {k}
+              <span className="accent-rail" aria-hidden="true" />
+              <div className="mb-1 flex items-center justify-between">
+                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
+                  {k}
+                </div>
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
               </div>
-              <div className="mt-1 text-app">{v}</div>
+              <div className="text-app">{v}</div>
             </motion.li>
           ))}
         </motion.ul>

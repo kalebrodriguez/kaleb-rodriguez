@@ -21,23 +21,17 @@ export function SkillsAwards() {
         variants={reduce ? undefined : staggerContainer}
         className="grid gap-5 md:grid-cols-2"
       >
-        <motion.div
-          variants={reduce ? undefined : staggerItem}
-          className="rounded-lg border border-line bg-surface p-6"
-        >
+        <motion.div variants={reduce ? undefined : staggerItem} className="panel p-6">
           <h3 className="fig-label mb-5">Skills</h3>
-          <dl className="space-y-4">
+          <dl className="space-y-5">
             {Object.entries(skills).map(([group, items]) => (
               <div key={group}>
-                <dt className="mb-2 font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                <dt className="mb-2.5 font-mono text-[0.68rem] uppercase tracking-widest text-muted">
                   {group}
                 </dt>
                 <dd className="flex flex-wrap gap-2">
                   {items.map((s) => (
-                    <span
-                      key={s}
-                      className="rounded border border-line px-2.5 py-1 text-xs text-app transition-colors hover:border-[var(--signal-deep)] hover:text-signal"
-                    >
+                    <span key={s} className="chip">
                       {s}
                     </span>
                   ))}
@@ -48,31 +42,29 @@ export function SkillsAwards() {
         </motion.div>
 
         <div className="flex flex-col gap-5">
-          <motion.div
-            variants={reduce ? undefined : staggerItem}
-            className="rounded-lg border border-line bg-surface p-6"
-          >
+          <motion.div variants={reduce ? undefined : staggerItem} className="panel p-6">
             <h3 className="fig-label mb-5">Honors & awards</h3>
-            <ul className="space-y-3">
-              {awards.map((a) => (
-                <li key={a} className="flex gap-3 text-sm leading-relaxed text-muted">
-                  <Award size={15} className="mt-0.5 shrink-0 text-signal" />
-                  <span>{a}</span>
+            <ul className="space-y-2">
+              {awards.map((a, i) => (
+                <li
+                  key={a}
+                  className="group flex gap-3 rounded-md border border-transparent px-2 py-2 text-sm leading-relaxed text-muted transition-colors hover:border-line hover:bg-surface-2"
+                >
+                  <Award
+                    size={15}
+                    className="mt-0.5 shrink-0 text-signal transition-transform group-hover:scale-110"
+                  />
+                  <span className="flex-1">{a}</span>
+                  <span className="index-mark mt-0.5">{String(i + 1).padStart(2, '0')}</span>
                 </li>
               ))}
             </ul>
           </motion.div>
-          <motion.div
-            variants={reduce ? undefined : staggerItem}
-            className="rounded-lg border border-line bg-surface p-6"
-          >
+          <motion.div variants={reduce ? undefined : staggerItem} className="panel p-6">
             <h3 className="fig-label mb-4">Certifications</h3>
             <ul className="flex flex-wrap gap-2">
               {certifications.map((c) => (
-                <li
-                  key={c}
-                  className="rounded border border-line px-2.5 py-1 font-mono text-[0.68rem] text-muted"
-                >
+                <li key={c} className="chip">
                   {c}
                 </li>
               ))}

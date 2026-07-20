@@ -14,24 +14,24 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 opacity-70">
+      <div className="pointer-events-none absolute inset-0 opacity-75">
         <Connectome />
       </div>
-      <div className="pointer-events-none absolute inset-0 opacity-60">
-        <FluorophoreDust density={36} />
+      <div className="pointer-events-none absolute inset-0 opacity-65">
+        <FluorophoreDust density={40} />
       </div>
       <div
         className="pointer-events-none absolute inset-0 field-drift"
         style={{
           background:
-            'radial-gradient(90% 70% at 70% 20%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 55%), radial-gradient(70% 60% at 15% 80%, color-mix(in srgb, var(--stain) 8%, transparent), transparent 50%)',
+            'radial-gradient(90% 70% at 70% 20%, color-mix(in srgb, var(--signal) 12%, transparent), transparent 55%), radial-gradient(70% 60% at 15% 80%, color-mix(in srgb, var(--stain) 10%, transparent), transparent 50%)',
         }}
       />
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(120% 90% at 50% 0%, transparent 40%, var(--bg) 92%)',
+            'radial-gradient(120% 90% at 50% 0%, transparent 35%, var(--bg) 94%)',
         }}
       />
       <FieldReticle />
@@ -91,11 +91,7 @@ export function Hero() {
           transition={{ duration: 0.6, ease, delay: 0.3 }}
           className="mt-9 flex flex-wrap items-center gap-3"
         >
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-2 rounded-md px-5 py-3 text-sm font-500 text-[var(--bg)] transition-transform hover:-translate-y-0.5"
-            style={{ backgroundColor: 'var(--signal)' }}
-          >
+          <a href="#projects" className="btn-primary group">
             View projects
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
@@ -103,7 +99,7 @@ export function Hero() {
             href={profile.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+            className="btn-ghost"
           >
             <GithubIcon size={16} /> GitHub
           </a>
@@ -111,14 +107,11 @@ export function Hero() {
             href={profile.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
+            className="btn-ghost"
           >
             <LinkedinIcon size={16} /> LinkedIn
           </a>
-          <a
-            href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-2 rounded-md border border-line px-5 py-3 text-sm font-500 text-app transition-colors hover:border-[var(--signal-deep)]"
-          >
+          <a href={`mailto:${profile.email}`} className="btn-ghost">
             <Mail size={16} /> Email
           </a>
         </motion.div>
@@ -130,16 +123,24 @@ export function Hero() {
           variants={reduce ? undefined : staggerContainer}
           className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-[var(--line)] sm:grid-cols-4"
         >
-          {focusAreas.map((f) => (
+          {focusAreas.map((f, i) => (
             <motion.div
               key={f.label}
               variants={reduce ? undefined : staggerItem}
               className="group/focus relative overflow-hidden bg-surface p-5"
             >
+              <span className="accent-rail" aria-hidden="true" />
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,var(--signal),transparent)] transition-transform duration-500 group-hover/focus:scale-x-100"
               />
+              <div className="mb-3 flex items-center justify-between">
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 rounded-full bg-[var(--signal)] opacity-50 transition-opacity group-hover/focus:opacity-100"
+                />
+              </div>
               <dt className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
                 {f.label}
               </dt>

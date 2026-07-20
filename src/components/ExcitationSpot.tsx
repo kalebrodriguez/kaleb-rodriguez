@@ -33,7 +33,7 @@ export function ExcitationSpot() {
     <div
       ref={ref}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[1] opacity-0 transition-opacity duration-500"
+      className="pointer-events-none fixed inset-0 z-[15] opacity-0 mix-blend-soft-light transition-opacity duration-500"
     />
   )
 }

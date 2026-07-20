@@ -11,6 +11,7 @@ import { ScrollProgress } from './components/ScrollProgress'
 import { KeywordMarquee } from './components/KeywordMarquee'
 import { StageCoordinates } from './components/StageCoordinates'
 import { ExcitationSpot } from './components/ExcitationSpot'
+import { Atmosphere } from './components/Atmosphere'
 
 export default function App() {
   return (
@@ -21,21 +22,24 @@ export default function App() {
       >
         Skip to content
       </a>
+      <Atmosphere />
       <ScrollProgress />
       <ExcitationSpot />
       <StageCoordinates />
-      <Nav />
-      <main>
-        <Hero />
-        <KeywordMarquee />
-        <About />
-        <Research />
-        <Projects />
-        <Experience />
-        <SkillsAwards />
-        <Contact />
-      </main>
-      <Footer />
+      <div className="relative z-10">
+        <Nav />
+        <main>
+          <Hero />
+          <KeywordMarquee />
+          <About />
+          <Research />
+          <Projects />
+          <Experience />
+          <SkillsAwards />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </>
   )
 }

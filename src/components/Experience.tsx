@@ -30,26 +30,41 @@ function Timeline({
         viewport={{ once: true, margin: '-40px' }}
         variants={reduce ? undefined : staggerContainer}
       >
-        {items.map((e) => (
+        {items.map((e, i) => (
           <motion.li
             key={e.org + e.role}
             variants={reduce ? undefined : staggerItem}
-            className="relative mb-8 last:mb-0"
+            className="group relative mb-5 last:mb-0"
           >
             <motion.span
-              className="absolute -left-[1.6rem] top-1.5 h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: accent }}
+              className="absolute -left-[1.6rem] top-4 z-10 h-2.5 w-2.5 rounded-full"
+              style={{
+                backgroundColor: accent,
+                boxShadow: `0 0 0 4px color-mix(in srgb, ${accent} 18%, transparent)`,
+              }}
               initial={reduce ? false : { scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 320, damping: 18 }}
             />
-            <div className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
-              {e.period}
+            <div className="panel card-hover relative p-4 sm:p-5">
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-0 h-full w-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ backgroundColor: accent }}
+              />
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <div className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  {e.period}
+                </div>
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <div className="font-display text-lg font-500">{e.org}</div>
+              <div className="text-sm" style={{ color: accent }}>
+                {e.role}
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{e.note}</p>
             </div>
-            <div className="mt-1 font-display text-lg font-500">{e.org}</div>
-            <div className="text-sm text-signal">{e.role}</div>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{e.note}</p>
           </motion.li>
         ))}
       </motion.ol>
