@@ -1,17 +1,28 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { profile } from '../data/content'
+import { ease } from './motion'
 
 export function Contact() {
+  const reduce = useReducedMotion()
+
   return (
-    <section id="contact" className="relative border-t border-line">
-      <div className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+    <section id="contact" className="relative overflow-hidden border-t border-line">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-24 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full field-drift"
+        style={{
+          background:
+            'radial-gradient(circle, color-mix(in srgb, var(--signal) 16%, transparent), transparent 68%)',
+        }}
+      />
+      <div className="relative mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={reduce ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease }}
         >
           <span className="fig-label">Fig. 06 — Contact</span>
           <h2 className="font-display mt-6 max-w-3xl text-4xl font-500 leading-tight tracking-tight sm:text-6xl">

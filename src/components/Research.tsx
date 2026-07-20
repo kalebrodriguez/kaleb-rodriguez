@@ -1,9 +1,13 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from './Section'
 import { StatusTag } from './StatusTag'
 import { research } from '../data/content'
+import { staggerContainer, staggerItem } from './motion'
 
 export function Research() {
+  const reduce = useReducedMotion()
+
   return (
     <Section
       id="research"
@@ -11,7 +15,13 @@ export function Research() {
       title="Questions I keep coming back to."
       alt
     >
-      <ul className="space-y-px overflow-hidden rounded-lg border border-line bg-[var(--line)]">
+      <motion.ul
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={reduce ? undefined : staggerContainer}
+        className="space-y-px overflow-hidden rounded-lg border border-line bg-[var(--line)]"
+      >
         {research.map((r) => {
           const inner = (
             <>
@@ -45,7 +55,11 @@ export function Research() {
           )
 
           return (
-            <li key={r.title} className="bg-surface">
+            <motion.li
+              key={r.title}
+              variants={reduce ? undefined : staggerItem}
+              className="bg-surface"
+            >
               {'link' in r && r.link ? (
                 <a
                   href={r.link}
@@ -58,10 +72,10 @@ export function Research() {
               ) : (
                 <div className="p-6 sm:p-7">{inner}</div>
               )}
-            </li>
+            </motion.li>
           )
         })}
-      </ul>
+      </motion.ul>
       <p className="mt-6 max-w-2xl font-mono text-xs leading-relaxed text-muted">
         Note: ongoing work is described in general terms only. Unpublished data and
         confidential materials are intentionally omitted.

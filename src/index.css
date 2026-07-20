@@ -129,11 +129,35 @@ body {
   50% { opacity: 0.9; }
 }
 
+@keyframes status-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.75; }
+  50% { transform: scale(1.55); opacity: 1; }
+}
+
+@keyframes field-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-1.5%, 1%, 0) scale(1.03); }
+}
+
+.status-pulse {
+  animation: status-pulse 2.4s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.field-drift {
+  animation: field-drift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+  .field-drift,
+  .status-pulse {
+    animation: none !important;
   }
 }

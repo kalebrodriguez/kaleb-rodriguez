@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import type { ReactNode } from 'react'
+import { ease } from './motion'
 
 type Props = {
   id: string
@@ -10,6 +11,8 @@ type Props = {
 }
 
 export function Section({ id, fig, title, children, alt }: Props) {
+  const reduce = useReducedMotion()
+
   return (
     <section
       id={id}
@@ -17,14 +20,29 @@ export function Section({ id, fig, title, children, alt }: Props) {
     >
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={reduce ? false : { opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.55, ease }}
         >
           <div className="mb-10 flex items-baseline gap-4">
-            <span className="fig-label whitespace-nowrap">{fig}</span>
-            <span className="hairline flex-1 translate-y-[-2px]" />
+            <motion.span
+              className="fig-label whitespace-nowrap"
+              initial={reduce ? false : { opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, ease }}
+            >
+              {fig}
+            </motion.span>
+            <motion.span
+              className="hairline flex-1 translate-y-[-2px] origin-left"
+              initial={reduce ? false : { scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease, delay: 0.1 }}
+              aria-hidden="true"
+            />
           </div>
           <h2 className="font-display mb-12 max-w-3xl text-3xl font-500 leading-tight tracking-tight sm:text-[2.6rem]">
             {title}

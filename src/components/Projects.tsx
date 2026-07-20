@@ -1,24 +1,39 @@
+import { motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { Section } from './Section'
 import { StatusTag } from './StatusTag'
 import { projects } from '../data/content'
+import { staggerContainer, staggerItem } from './motion'
 
 export function Projects() {
+  const reduce = useReducedMotion()
+
   return (
     <Section
       id="projects"
       fig="Fig. 03 — Projects"
       title="Selected work — tools built for real users."
     >
-      <div className="grid gap-5 sm:grid-cols-2">
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={reduce ? undefined : staggerContainer}
+        className="grid gap-5 sm:grid-cols-2"
+      >
         {projects.map((p) => (
-          <a
+          <motion.a
             key={p.name}
             href={p.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="card-hover group flex flex-col rounded-lg border border-line bg-surface p-6"
+            variants={reduce ? undefined : staggerItem}
+            className="card-hover group relative flex flex-col overflow-hidden rounded-lg border border-line bg-surface p-6"
           >
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,var(--signal),transparent)] transition-transform duration-500 group-hover:scale-x-100"
+            />
             <div className="mb-3 flex items-center justify-between gap-3">
               <h3 className="font-display text-2xl font-500">{p.name}</h3>
               <ArrowUpRight
@@ -44,9 +59,9 @@ export function Projects() {
                 </li>
               ))}
             </ul>
-          </a>
+          </motion.a>
         ))}
-      </div>
+      </motion.div>
     </Section>
   )
 }
