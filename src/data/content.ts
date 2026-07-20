@@ -102,12 +102,12 @@ export const research = [
     title:
       'Nanoparticle-mediated modulation of the PINK1/Parkin mitophagy pathway in Parkinson’s disease',
     status: 'published',
-    meta: 'Scoping review · Jul 2026',
+    meta: 'Scoping review · Penn NRC 2026',
     org: 'ThinkNeuro',
     link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
     linkLabel: 'Read the paper',
     plain:
-      'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease, synthesizing evidence across the published literature.',
+      'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease, synthesizing evidence across the published literature. Accepted for presentation at the 2026 National Research Conference at Penn.',
   },
   {
     title:
