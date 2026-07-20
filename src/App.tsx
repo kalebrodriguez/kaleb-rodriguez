@@ -9,7 +9,6 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { ScrollProgress } from './components/ScrollProgress'
 import { KeywordMarquee } from './components/KeywordMarquee'
-import { StageCoordinates } from './components/StageCoordinates'
 import { ExcitationSpot } from './components/ExcitationSpot'
 import { Atmosphere } from './components/Atmosphere'
 import { CursorDot } from './components/CursorDot'
@@ -27,7 +26,6 @@ export default function App() {
       <ScrollProgress />
       <ExcitationSpot />
       <CursorDot />
-      <StageCoordinates />
       <div className="relative z-10">
         <Nav />
         <main>
