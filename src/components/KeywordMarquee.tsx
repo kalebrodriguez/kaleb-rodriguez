@@ -3,15 +3,15 @@ import { useReducedMotion } from 'framer-motion'
 const TERMS = [
   'PINK1 / Parkin',
   'Mitophagy',
-  'Neurodegeneration',
+  'NeuroPD',
+  'ClearCredit',
   'Protein language models',
   'Assistive software',
-  'Biomarkers',
+  'CJD bibliometrics',
   'ELP fusion proteins',
-  'Error-based learning',
-  'Dementia care',
+  'Penn NRC 2026',
   'Bioinformatics',
-  'Omics · GeneLab',
+  'MediaPipe Pose',
   'Medication adherence',
 ]
 

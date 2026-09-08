@@ -1,16 +1,18 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Mail } from 'lucide-react'
+import { ArrowUpRight, Download, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { Connectome } from './Connectome'
 import { FieldReticle } from './FieldReticle'
 import { FluorophoreDust } from './FluorophoreDust'
 import { profile, focusAreas } from '../data/content'
 import { ease, staggerContainer, staggerItem } from './motion'
+import { useDetail } from './DetailDrawer'
 
 const name = profile.name
 
 export function Hero() {
   const reduce = useReducedMotion()
+  const { openDetail } = useDetail()
 
   return (
     <section id="top" className="relative overflow-hidden">
@@ -95,6 +97,9 @@ export function Hero() {
             View projects
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
+          <a href={profile.resume} className="btn-ghost" download>
+            <Download size={16} /> Resume
+          </a>
           <a
             href={profile.github}
             target="_blank"
@@ -124,10 +129,26 @@ export function Hero() {
           className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-[var(--line)] sm:grid-cols-4"
         >
           {focusAreas.map((f, i) => (
-            <motion.div
+            <motion.button
               key={f.label}
+              type="button"
               variants={reduce ? undefined : staggerItem}
-              className="group/focus relative overflow-hidden bg-surface p-5"
+              onClick={() =>
+                openDetail({
+                  kind: 'about',
+                  title: f.label,
+                  eyebrow: 'Focus area',
+                  summary: f.detail,
+                  detail:
+                    'Click through Research and Projects for the papers, posters, and tools behind this focus — or download the resume for the full chronology.',
+                  links: [
+                    { label: 'Jump to research', href: '#research' },
+                    { label: 'Jump to projects', href: '#projects' },
+                    { label: 'Download resume', href: profile.resume },
+                  ],
+                })
+              }
+              className="group/focus relative overflow-hidden bg-surface p-5 text-left"
             >
               <span className="accent-rail" aria-hidden="true" />
               <span
@@ -145,7 +166,10 @@ export function Hero() {
                 {f.label}
               </dt>
               <dd className="mt-2 text-sm leading-relaxed text-muted">{f.detail}</dd>
-            </motion.div>
+              <span className="mt-3 inline-block font-mono text-[0.62rem] uppercase tracking-widest text-muted transition-colors group-hover/focus:text-signal">
+                Explore →
+              </span>
+            </motion.button>
           ))}
         </motion.dl>
       </div>

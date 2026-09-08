@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Section } from './Section'
 import { experience, leadership } from '../data/content'
 import { ease, staggerContainer, staggerItem } from './motion'
+import { useDetail } from './DetailDrawer'
 
 function Timeline({
   items,
@@ -11,6 +12,7 @@ function Timeline({
   accent: string
 }) {
   const reduce = useReducedMotion()
+  const { openDetail } = useDetail()
 
   return (
     <div className="relative pl-6">
@@ -32,7 +34,7 @@ function Timeline({
       >
         {items.map((e, i) => (
           <motion.li
-            key={e.org + e.role}
+            key={e.id}
             variants={reduce ? undefined : staggerItem}
             className="group relative mb-5 last:mb-0"
           >
@@ -47,7 +49,21 @@ function Timeline({
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 320, damping: 18 }}
             />
-            <div className="panel card-hover relative p-4 sm:p-5">
+            <button
+              type="button"
+              onClick={() =>
+                openDetail({
+                  kind: 'experience',
+                  title: e.org,
+                  eyebrow: `${e.role} · ${e.period}`,
+                  summary: e.note,
+                  detail: e.detail,
+                  highlights: e.highlights,
+                  links: e.links,
+                })
+              }
+              className="panel card-hover relative w-full p-4 text-left sm:p-5"
+            >
               <span
                 aria-hidden="true"
                 className="absolute left-0 top-0 h-full w-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -64,7 +80,10 @@ function Timeline({
                 {e.role}
               </div>
               <p className="mt-2 text-sm leading-relaxed text-muted">{e.note}</p>
-            </div>
+              <span className="mt-3 inline-block font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+                More →
+              </span>
+            </button>
           </motion.li>
         ))}
       </motion.ol>
