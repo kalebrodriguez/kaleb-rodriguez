@@ -1,10 +1,12 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Section } from './Section'
-import { profile, education } from '../data/content'
+import { profile, education, aboutFacts } from '../data/content'
 import { staggerContainer, staggerItem } from './motion'
+import { useDetail } from './DetailDrawer'
 
 export function About() {
   const reduce = useReducedMotion()
+  const { openDetail } = useDetail()
 
   return (
     <Section id="about" fig="Fig. 01 — About" title="Between the lab bench and the build.">
@@ -19,6 +21,32 @@ export function About() {
             scoping review to the wet bench — and assistive software is the answer
             I can ship today.
           </p>
+          <button
+            type="button"
+            onClick={() =>
+              openDetail({
+                kind: 'about',
+                title: 'Where I’m headed',
+                eyebrow: 'Intended path',
+                summary: profile.path,
+                detail:
+                  'Dual enrollment across USF, HCC, and UF (roughly 85 credit hours) plus a CSIT Magnet track at Middleton High School. The work spans wet lab, computational biology, NLP, and product-building — aimed at the intersection of biology, medicine, and computation.',
+                highlights: [
+                  'Exploring Biomedical Engineering, Biology, CS, and Data Science',
+                  '~85 dual-enrollment credit hours',
+                  'Research across USF Koria Lab, USF Cheng Lab, MIT CSAIL Mantis, Oakland NLP, NASA GeneLab',
+                  'Class of 2027',
+                ],
+                links: [
+                  { label: 'Download resume', href: profile.resume },
+                  { label: 'GitHub', href: profile.github },
+                ],
+              })
+            }
+            className="fig-label text-left transition-colors hover:text-app"
+          >
+            Intended path — open →
+          </button>
           <div>
             <div className="fig-label mb-4">Education</div>
             <motion.ul
@@ -57,25 +85,37 @@ export function About() {
           variants={reduce ? undefined : staggerContainer}
           className="panel h-max !p-0"
         >
-          {[
-            ['Based in', profile.location],
-            ['Studying', 'Dual enrollment — USF, HCC & UF'],
-            ['Graduating', 'High school, 2027'],
-            ['Working in', 'Neurodegeneration & assistive tech'],
-          ].map(([k, v], i) => (
-            <motion.li
-              key={k}
-              variants={reduce ? undefined : staggerItem}
-              className="group/focus relative border-b border-line px-5 py-4 last:border-0"
-            >
-              <span className="accent-rail" aria-hidden="true" />
-              <div className="mb-1 flex items-center justify-between">
-                <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
-                  {k}
+          {aboutFacts.map((f, i) => (
+            <motion.li key={f.id} variants={reduce ? undefined : staggerItem}>
+              <button
+                type="button"
+                onClick={() =>
+                  openDetail({
+                    kind: 'about',
+                    title: f.label,
+                    eyebrow: 'Profile',
+                    summary: f.value,
+                    detail: f.detail,
+                    links:
+                      f.id === 'path' || f.id === 'studying'
+                        ? [{ label: 'Download resume', href: profile.resume }]
+                        : undefined,
+                  })
+                }
+                className="group/focus relative w-full border-b border-line px-5 py-4 text-left last:border-0"
+              >
+                <span className="accent-rail" aria-hidden="true" />
+                <div className="mb-1 flex items-center justify-between">
+                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
+                    {f.label}
+                  </div>
+                  <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
                 </div>
-                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
-              </div>
-              <div className="text-app">{v}</div>
+                <div className="text-app">{f.value}</div>
+                <span className="mt-2 inline-block font-mono text-[0.62rem] uppercase tracking-widest text-muted transition-colors group-hover/focus:text-signal">
+                  More →
+                </span>
+              </button>
             </motion.li>
           ))}
         </motion.ul>

@@ -4,9 +4,11 @@ import { Section } from './Section'
 import { StatusTag } from './StatusTag'
 import { projects } from '../data/content'
 import { staggerContainer, staggerItem } from './motion'
+import { useDetail } from './DetailDrawer'
 
 export function Projects() {
   const reduce = useReducedMotion()
+  const { openDetail } = useDetail()
 
   return (
     <Section
@@ -22,25 +24,36 @@ export function Projects() {
         className="grid gap-5 sm:grid-cols-2"
       >
         {projects.map((p, i) => (
-          <motion.a
-            key={p.name}
-            href={p.link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.button
+            key={p.id}
+            type="button"
             variants={reduce ? undefined : staggerItem}
-            className="card-hover panel group relative flex flex-col p-6"
+            onClick={() =>
+              openDetail({
+                kind: 'project',
+                title: p.name,
+                eyebrow: p.kind,
+                status: p.status,
+                summary: p.summary,
+                detail: p.detail,
+                highlights: p.highlights,
+                stack: p.stack,
+                links: p.links,
+              })
+            }
+            className="card-hover panel group relative flex flex-col p-6 text-left"
           >
             <span className="accent-rail" aria-hidden="true" />
             <span aria-hidden="true" className="scan-sweep" />
             <div className="mb-4 flex items-center justify-between gap-3">
               <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
-              <ArrowUpRight
-                size={18}
-                className="text-muted transition-colors group-hover:text-signal"
-              />
+              <span className="inline-flex items-center gap-1 font-mono text-[0.65rem] uppercase tracking-widest text-signal opacity-80 transition-opacity group-hover:opacity-100">
+                Details
+                <ArrowUpRight size={14} />
+              </span>
             </div>
             <h3 className="font-display text-2xl font-500">{p.name}</h3>
-            <div className="mb-4 mt-3 flex items-center gap-3">
+            <div className="mb-4 mt-3 flex flex-wrap items-center gap-3">
               {p.status !== 'active' && <StatusTag status={p.status} />}
               <span className="text-xs text-muted">
                 {p.status !== 'active' ? '· ' : ''}
@@ -55,7 +68,7 @@ export function Projects() {
                 </li>
               ))}
             </ul>
-          </motion.a>
+          </motion.button>
         ))}
       </motion.div>
     </Section>

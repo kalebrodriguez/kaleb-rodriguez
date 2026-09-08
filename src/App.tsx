@@ -12,10 +12,11 @@ import { KeywordMarquee } from './components/KeywordMarquee'
 import { ExcitationSpot } from './components/ExcitationSpot'
 import { Atmosphere } from './components/Atmosphere'
 import { CursorDot } from './components/CursorDot'
+import { DetailProvider } from './components/DetailDrawer'
 
 export default function App() {
   return (
-    <>
+    <DetailProvider>
       <a
         href="#about"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:text-sm"
@@ -40,6 +41,6 @@ export default function App() {
         </main>
         <Footer />
       </div>
-    </>
+    </DetailProvider>
   )
 }
