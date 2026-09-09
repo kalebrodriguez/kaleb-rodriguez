@@ -61,7 +61,7 @@ export const focusAreas = [
   {
     label: 'Neurodegeneration',
     detail:
-      'Parkinson’s mitophagy (PINK1/Parkin) — a published scoping review — plus Alzheimer’s biomarker detection, CJD bibliometrics, and how error-based learning maps onto neuronal circuits.',
+      'Parkinson’s mitophagy (PINK1/Parkin) — a published scoping review — plus CJD bibliometrics and how error-based learning maps onto neuronal circuits.',
   },
   {
     label: 'Computational biology',
@@ -320,24 +320,6 @@ export const research: ResearchItem[] = [
     ],
   },
   {
-    id: 'alzheimers-review',
-    title:
-      'AI-driven vs. traditional approaches for early neural biomarker detection in Alzheimer’s disease',
-    status: 'ongoing',
-    meta: 'Systematic review · leading a team of 6',
-    org: 'Synthica',
-    plain:
-      'Leading a six-person team on a systematic review comparing machine-learning and conventional clinical methods for catching Alzheimer’s biomarkers early — working toward peer-reviewed publication.',
-    detail:
-      'Team lead for a systematic review that asks whether AI-based approaches outperform traditional clinical methods for early Alzheimer’s biomarker detection. Scope covers literature synthesis and a path to peer-reviewed publication.',
-    highlights: [
-      'Leading a team of six researchers',
-      'AI vs. traditional biomarker detection',
-      'Working toward peer-reviewed publication',
-    ],
-    links: [],
-  },
-  {
     id: 'hemolytic-peptides',
     title: 'Predicting hemolytic peptide activity with protein language models',
     status: 'ongoing',
@@ -451,16 +433,6 @@ export const experience: ExperienceItem[] = [
       'MedAlert iOS app (Swift/SwiftUI)',
       'UGC co-lead · 100K+ views',
     ],
-  },
-  {
-    id: 'synthica',
-    org: 'Synthica',
-    role: 'Lead Researcher & Head of UGC',
-    period: 'Apr 2026 — Present',
-    note: 'Lead a six-person Alzheimer’s biomarker systematic review and mentor UGC creators.',
-    detail:
-      'Own research direction on AI vs. traditional early Alzheimer’s biomarker detection while running short-form content strategy for brand growth.',
-    highlights: ['Team of 6 on systematic review', 'UGC mentorship'],
   },
   {
     id: 'adventhealth',
