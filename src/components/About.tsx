@@ -21,32 +21,6 @@ export function About() {
             scoping review to the wet bench — and assistive software is the answer
             I can ship today.
           </p>
-          <button
-            type="button"
-            onClick={() =>
-              openDetail({
-                kind: 'about',
-                title: 'Where I’m headed',
-                eyebrow: 'Intended path',
-                summary: profile.path,
-                detail:
-                  'Dual enrollment across USF, HCC, and UF (roughly 85 credit hours) plus a CSIT Magnet track at Middleton High School. The work spans wet lab, computational biology, NLP, and product-building — aimed at the intersection of biology, medicine, and computation.',
-                highlights: [
-                  'Exploring Biomedical Engineering, Biology, CS, and Data Science',
-                  '~85 dual-enrollment credit hours',
-                  'Research across USF Koria Lab, USF Cheng Lab, MIT CSAIL Mantis, Oakland NLP, NASA GeneLab',
-                  'Class of 2027',
-                ],
-                links: [
-                  { label: 'Download resume', href: profile.resume },
-                  { label: 'GitHub', href: profile.github },
-                ],
-              })
-            }
-            className="fig-label text-left transition-colors hover:text-app"
-          >
-            Intended path — open →
-          </button>
           <div>
             <div className="fig-label mb-4">Education</div>
             <motion.ul
@@ -97,8 +71,8 @@ export function About() {
                     summary: f.value,
                     detail: f.detail,
                     links:
-                      f.id === 'path' || f.id === 'studying'
-                        ? [{ label: 'Download resume', href: profile.resume }]
+                      f.id === 'studying'
+                        ? [{ label: 'GitHub', href: profile.github }]
                         : undefined,
                   })
                 }

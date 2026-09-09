@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Download, Mail } from 'lucide-react'
+import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { Connectome } from './Connectome'
 import { FieldReticle } from './FieldReticle'
@@ -97,9 +97,6 @@ export function Hero() {
             View projects
             <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
-          <a href={profile.resume} className="btn-ghost" download>
-            <Download size={16} /> Resume
-          </a>
           <a
             href={profile.github}
             target="_blank"
@@ -140,11 +137,10 @@ export function Hero() {
                   eyebrow: 'Focus area',
                   summary: f.detail,
                   detail:
-                    'Click through Research and Projects for the papers, posters, and tools behind this focus — or download the resume for the full chronology.',
+                    'Click through Research and Projects for the papers, posters, and tools behind this focus.',
                   links: [
                     { label: 'Jump to research', href: '#research' },
                     { label: 'Jump to projects', href: '#projects' },
-                    { label: 'Download resume', href: profile.resume },
                   ],
                 })
               }
