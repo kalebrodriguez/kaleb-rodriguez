@@ -15,6 +15,7 @@ export type Project = {
   stack: string[]
   link: string
   links: DetailLink[]
+  featured?: boolean
 }
 
 export type ResearchItem = {
@@ -87,6 +88,7 @@ export const projects: Project[] = [
     name: 'NeuroPD',
     status: 'active',
     kind: 'Open-source research pipeline',
+    featured: true,
     summary:
       'A reproducible pipeline testing whether interpretable resting-state EEG features for Parkinson’s disease generalize across independent datasets and recording systems.',
     detail:
