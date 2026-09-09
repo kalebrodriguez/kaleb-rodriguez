@@ -43,7 +43,7 @@ function CompactList({
             className="row-link group"
           >
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="font-display text-base font-600 tracking-tight sm:text-lg">
+              <h3 className="font-display text-base font-semibold tracking-tight sm:text-lg">
                 {e.org}
               </h3>
               <span className="meta shrink-0">{e.period}</span>
