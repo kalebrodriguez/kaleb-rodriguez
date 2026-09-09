@@ -1,4 +1,4 @@
-/** Distinct specimen-plate visuals for each project — not stock screenshots. */
+/** Distinct cover diagrams for each project — not stock screenshots. */
 export function ProjectCover({ id }: { id: string }) {
   const common = {
     className: 'h-full w-full',

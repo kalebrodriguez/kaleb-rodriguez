@@ -97,7 +97,7 @@ function DetailDrawer({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="relative flex h-full w-full max-w-lg flex-col border-l border-line bg-app"
+            className="relative flex h-full w-full max-w-lg flex-col border-l border-line bg-surface"
             initial={reduce ? false : { x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -138,7 +138,7 @@ function DetailDrawer({
               )}
               <h2
                 id={titleId}
-                className="font-display text-2xl font-600 leading-tight tracking-tight sm:text-3xl"
+                className="font-display text-2xl font-semibold leading-tight tracking-tight sm:text-3xl"
               >
                 {payload.title}
               </h2>

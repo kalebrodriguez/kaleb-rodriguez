@@ -4,7 +4,7 @@ const tone: Record<string, string> = {
   active: 'var(--signal)',
   shipped: 'var(--signal)',
   published: 'var(--signal)',
-  ongoing: 'var(--stain)',
+  ongoing: 'var(--mark)',
   prototype: 'var(--muted)',
   concept: 'var(--muted)',
   completed: 'var(--muted)',
