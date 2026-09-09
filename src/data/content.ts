@@ -1,6 +1,6 @@
-// All site content. Sourced only from public-facing material (public résumé,
-// public LinkedIn profile, public GitHub repos, project summaries). No private
-// records, contact numbers, credential IDs, or unpublished research data.
+// All site content. Sourced only from public-facing material (public LinkedIn
+// profile, public GitHub repos, project summaries). No private records, contact
+// numbers, credential IDs, or unpublished research data.
 
 export type DetailLink = { label: string; href: string }
 
