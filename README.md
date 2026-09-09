@@ -9,11 +9,13 @@ in a single, fast, accessible page.
 
 ## Design
 
-The visual direction is a restrained “specimen field”: dark microscopy-inspired
-canvas, fluorescence-cyan accent, Syne + Space Grotesk type, and layouts that
-vary by content type (featured project, dense research rows, compact experience).
-Ambient FX are kept minimal; interaction depth comes from detail drawers and
-project cover plates. Light theme is supported.
+The visual direction is a "specimen field / research journal": a dark
+microscopy-inspired canvas with a fluorescence-cyan signal accent, a
+geometric futuristic masthead (Syne), body type in Space Grotesk, and section
+eyebrows set as figure labels
+(`Fig. 01 — About`) that mirror the way figures are numbered in a paper. The
+signature element is an abstract **connectome** — a node/edge graph behind the
+hero. A light theme is fully supported and respects `prefers-color-scheme`.
 
 ## Tech stack
 

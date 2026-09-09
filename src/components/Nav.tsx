@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Menu, Moon, Sun, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useTheme } from './useTheme'
-import { profile } from '../data/content'
 
 const links = [
   ['About', '#about'],
@@ -15,19 +15,21 @@ export function Nav() {
   const { theme, toggle } = useTheme()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [active, setActive] = useState('')
+  const [active, setActive] = useState<string>('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   useEffect(() => {
-    const els = links
-      .map(([, href]) => document.getElementById(href.slice(1)))
+    const ids = links.map(([, href]) => href.slice(1))
+    const els = ids
+      .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => Boolean(el))
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -35,58 +37,68 @@ export function Nav() {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
         if (visible[0]?.target.id) setActive(`#${visible[0].target.id}`)
       },
-      { rootMargin: '-35% 0px -50% 0px', threshold: [0.15, 0.4] },
+      { rootMargin: '-30% 0px -55% 0px', threshold: [0.1, 0.35, 0.6] },
     )
+
     els.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors ${
-        scrolled ? 'border-b border-line' : ''
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors ${
+        scrolled ? 'border-line backdrop-blur-md' : 'border-transparent'
       }`}
       style={
         scrolled
-          ? { backgroundColor: 'color-mix(in srgb, var(--bg) 88%, transparent)', backdropFilter: 'blur(10px)' }
+          ? { backgroundColor: 'color-mix(in srgb, var(--bg) 78%, transparent)' }
           : undefined
       }
     >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
-        <a href="#top" className="font-display text-base font-600 tracking-tight">
-          {profile.name.split(' ')[0]}
-          <span className="text-signal">.</span>
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+        <a href="#top" className="font-display text-lg font-500 tracking-tight">
+          Kaleb
+          <span className="status-pulse inline-block text-signal">.</span>
+          Rodriguez
         </a>
 
-        <div className="hidden items-center gap-7 md:flex">
-          {links.map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              className={`text-sm transition-colors ${
-                active === href ? 'text-app' : 'text-muted hover:text-app'
-              }`}
-            >
-              {label}
-            </a>
-          ))}
-          <a href={profile.resume} className="text-sm text-signal hover:underline" download>
-            Resume
-          </a>
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map(([label, href]) => {
+            const isActive = active === href
+            return (
+              <a
+                key={href}
+                href={href}
+                className={`relative font-mono text-xs uppercase tracking-widest transition-colors ${
+                  isActive ? 'text-app' : 'text-muted hover:text-app'
+                }`}
+              >
+                {label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-px"
+                    style={{ backgroundColor: 'var(--signal)' }}
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </a>
+            )
+          })}
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="p-1.5 text-muted transition-colors hover:text-app"
+            className="rounded-md border border-line p-2 text-muted transition-colors hover:text-signal"
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </div>
 
-        <div className="flex items-center gap-1 md:hidden">
+        <div className="flex items-center gap-2 md:hidden">
           <button
             onClick={toggle}
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            className="p-2 text-muted"
+            className="rounded-md border border-line p-2 text-muted"
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
@@ -94,7 +106,7 @@ export function Nav() {
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
-            className="p-2 text-muted"
+            className="rounded-md border border-line p-2 text-muted"
           >
             {open ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -102,26 +114,20 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="border-t border-line bg-app md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col px-5 py-3">
+        <div className="border-t border-line bg-surface md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col px-5 py-2 sm:px-8">
             {links.map(([label, href]) => (
               <a
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)}
-                className={`py-3 text-base ${active === href ? 'text-signal' : 'text-muted'}`}
+                className={`border-b border-line py-3 font-mono text-sm uppercase tracking-widest last:border-0 ${
+                  active === href ? 'text-signal' : 'text-muted'
+                }`}
               >
                 {label}
               </a>
             ))}
-            <a
-              href={profile.resume}
-              download
-              onClick={() => setOpen(false)}
-              className="py-3 text-base text-signal"
-            >
-              Resume
-            </a>
           </div>
         </div>
       )}

@@ -1,68 +1,112 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import { Section } from './Section'
 import { experience, leadership } from '../data/content'
-import { staggerContainer, staggerItem } from './motion'
+import { ease, staggerContainer, staggerItem } from './motion'
 import { useDetail } from './DetailDrawer'
 
-function CompactList({
+function Timeline({
   items,
-  label,
+  accent,
 }: {
   items: typeof experience
-  label: string
+  accent: string
 }) {
   const reduce = useReducedMotion()
   const { openDetail } = useDetail()
 
   return (
-    <div>
-      <p className="meta-signal mb-4">{label}</p>
+    <div className="relative pl-6">
+      <div className="absolute left-0 top-0 h-full w-px bg-[var(--line)]" aria-hidden="true" />
       <motion.div
+        aria-hidden="true"
+        className="absolute left-0 top-0 h-full w-px origin-top"
+        style={{ backgroundColor: accent }}
+        initial={reduce ? false : { scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 1.1, ease }}
+      />
+      <motion.ol
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-40px' }}
         variants={reduce ? undefined : staggerContainer}
-        className="border-t border-line"
       >
-        {items.map((e) => (
-          <motion.button
+        {items.map((e, i) => (
+          <motion.li
             key={e.id}
-            type="button"
             variants={reduce ? undefined : staggerItem}
-            onClick={() =>
-              openDetail({
-                kind: 'experience',
-                title: e.org,
-                eyebrow: `${e.role} · ${e.period}`,
-                summary: e.note,
-                detail: e.detail,
-                highlights: e.highlights,
-                links: e.links,
-              })
-            }
-            className="row-link group"
+            className="group relative mb-5 last:mb-0"
           >
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3 className="font-display text-base font-600 tracking-tight sm:text-lg">
-                {e.org}
-              </h3>
-              <span className="meta shrink-0">{e.period}</span>
-            </div>
-            <p className="text-sm text-signal">{e.role}</p>
-            <p className="text-sm leading-relaxed text-muted">{e.note}</p>
-          </motion.button>
+            <motion.span
+              className="absolute -left-[1.6rem] top-4 z-10 h-2.5 w-2.5 rounded-full"
+              style={{
+                backgroundColor: accent,
+                boxShadow: `0 0 0 4px color-mix(in srgb, ${accent} 18%, transparent)`,
+              }}
+              initial={reduce ? false : { scale: 0 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+            />
+            <button
+              type="button"
+              onClick={() =>
+                openDetail({
+                  kind: 'experience',
+                  title: e.org,
+                  eyebrow: `${e.role} · ${e.period}`,
+                  summary: e.note,
+                  detail: e.detail,
+                  highlights: e.highlights,
+                  links: e.links,
+                })
+              }
+              className="panel card-hover relative w-full p-4 text-left sm:p-5"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute left-0 top-0 h-full w-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ backgroundColor: accent }}
+              />
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <div className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  {e.period}
+                </div>
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+              <div className="font-display text-lg font-500">{e.org}</div>
+              <div className="text-sm" style={{ color: accent }}>
+                {e.role}
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{e.note}</p>
+              <span className="mt-3 inline-block font-mono text-[0.65rem] uppercase tracking-widest text-signal">
+                More →
+              </span>
+            </button>
+          </motion.li>
         ))}
-      </motion.div>
+      </motion.ol>
     </div>
   )
 }
 
 export function Experience() {
   return (
-    <Section id="experience" fig="04 — Experience" title="Where I’ve worked and led.">
-      <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-        <CompactList items={experience} label="Research & clinical" />
-        <CompactList items={leadership} label="Leadership & community" />
+    <Section
+      id="experience"
+      fig="Fig. 04 — Experience"
+      title="Where I’ve worked and led."
+    >
+      <div className="grid gap-14 md:grid-cols-2">
+        <div>
+          <h3 className="fig-label mb-6">Research & clinical</h3>
+          <Timeline items={experience} accent="var(--signal)" />
+        </div>
+        <div>
+          <h3 className="fig-label mb-6">Leadership & community</h3>
+          <Timeline items={leadership} accent="var(--stain)" />
+        </div>
       </div>
     </Section>
   )

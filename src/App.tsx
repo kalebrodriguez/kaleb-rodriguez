@@ -8,7 +8,10 @@ import { SkillsAwards } from './components/SkillsAwards'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { ScrollProgress } from './components/ScrollProgress'
+import { KeywordMarquee } from './components/KeywordMarquee'
+import { ExcitationSpot } from './components/ExcitationSpot'
 import { Atmosphere } from './components/Atmosphere'
+import { CursorDot } from './components/CursorDot'
 import { DetailProvider } from './components/DetailDrawer'
 
 export default function App() {
@@ -22,10 +25,13 @@ export default function App() {
       </a>
       <Atmosphere />
       <ScrollProgress />
+      <ExcitationSpot />
+      <CursorDot />
       <div className="relative z-10">
         <Nav />
         <main>
           <Hero />
+          <KeywordMarquee />
           <About />
           <Research />
           <Projects />
