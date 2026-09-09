@@ -41,10 +41,10 @@ function buildGraph() {
     })
   })
 
-  const pulses: Pulse[] = Array.from({ length: 10 }, () => ({
+  const pulses: Pulse[] = Array.from({ length: 5 }, () => ({
     edge: Math.floor(rand() * edges.length),
     t: rand(),
-    speed: 0.08 + rand() * 0.14,
+    speed: 0.06 + rand() * 0.1,
     dir: rand() > 0.5 ? 1 : -1,
   }))
 
@@ -72,9 +72,9 @@ export function Connectome() {
         x: ((e.clientX - rect.left) / rect.width) * W,
         y: ((e.clientY - rect.top) / rect.height) * H,
       }
-      const ox = (e.clientX / window.innerWidth - 0.5) * 18
-      const oy = (e.clientY / window.innerHeight - 0.5) * 12
-      el.style.transform = `translate(${ox}px, ${oy}px) scale(1.04)`
+      const ox = (e.clientX / window.innerWidth - 0.5) * 8
+      const oy = (e.clientY / window.innerHeight - 0.5) * 6
+      el.style.transform = `translate(${ox}px, ${oy}px) scale(1.02)`
     }
 
     window.addEventListener('pointermove', onMove, { passive: true })
