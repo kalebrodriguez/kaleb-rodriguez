@@ -50,7 +50,6 @@ export const profile = {
   email: 'kalebrodriguez@usf.edu',
   github: 'https://github.com/kalebrodriguez',
   linkedin: 'https://www.linkedin.com/in/kaleb-rodriguez-8212a235a/',
-  resume: `${import.meta.env.BASE_URL}Kaleb_Rodriguez_Resume.pdf`,
   tagline:
     'High-school researcher studying neurodegeneration and building software that reaches real users.',
   intro:
