@@ -1,6 +1,6 @@
-/** Thin reading progress. */
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 
+/** Thin fluorescence bar that tracks reading progress. */
 export function ScrollProgress() {
   const reduce = useReducedMotion()
   const { scrollYProgress } = useScroll()
@@ -16,7 +16,10 @@ export function ScrollProgress() {
     <motion.div
       aria-hidden="true"
       className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[2px] origin-left"
-      style={{ scaleX, background: 'var(--signal)' }}
+      style={{
+        scaleX,
+        background: 'var(--signal)',
+      }}
     />
   )
 }

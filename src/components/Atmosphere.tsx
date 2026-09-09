@@ -1,18 +1,16 @@
-/** Quiet dark field — grain + vignette, no connectome wallpaper. */
+/** Quiet site atmosphere — grain + soft vignette only. */
 export function Atmosphere() {
   return (
-    <div aria-hidden="true" className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <>
+      <div aria-hidden="true" className="film-grain pointer-events-none fixed inset-0 z-[2]" />
       <div
-        className="absolute inset-0"
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[2]"
         style={{
-          background: `
-            radial-gradient(ellipse 70% 50% at 80% -10%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 55%),
-            radial-gradient(ellipse 50% 40% at 0% 60%, color-mix(in srgb, var(--mark) 7%, transparent), transparent 50%),
-            var(--bg)
-          `,
+          background:
+            'radial-gradient(ellipse at center, transparent 45%, color-mix(in srgb, var(--bg) 40%, transparent) 100%)',
         }}
       />
-      <div className="film-grain absolute inset-0" />
-    </div>
+    </>
   )
 }

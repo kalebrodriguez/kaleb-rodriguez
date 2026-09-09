@@ -24,7 +24,7 @@ export function Research() {
         variants={reduce ? undefined : staggerContainer}
         className="border-t border-line"
       >
-        {research.map((r, i) => (
+        {research.map((r) => (
           <motion.button
             key={r.id}
             type="button"
@@ -45,16 +45,13 @@ export function Research() {
                     : [],
               })
             }
-            className="row-link group grid-cols-[3.25rem_1fr_auto] items-start"
+            className="row-link group grid-cols-1 md:grid-cols-[7.5rem_1fr_auto]"
           >
-            <span className="pt-1 font-mono text-xs text-signal">
-              {String(i + 1).padStart(2, '0')}
-            </span>
+            <div className="flex items-center gap-3 md:block">
+              <StatusTag status={r.status} />
+            </div>
             <div className="min-w-0">
-              <div className="mb-2 flex flex-wrap items-center gap-3">
-                <StatusTag status={r.status} />
-              </div>
-              <h3 className="font-display text-lg font-semibold leading-snug tracking-tight sm:text-xl">
+              <h3 className="font-display text-lg font-600 leading-snug tracking-tight sm:text-xl">
                 {r.title}
               </h3>
               <p className="mt-2 text-sm text-muted">
