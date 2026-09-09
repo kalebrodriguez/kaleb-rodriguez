@@ -37,10 +37,7 @@ export function About() {
                   'Research across USF Koria Lab, USF Cheng Lab, MIT CSAIL Mantis, Oakland NLP, NASA GeneLab',
                   'Class of 2027',
                 ],
-                links: [
-                  { label: 'Download resume', href: profile.resume },
-                  { label: 'GitHub', href: profile.github },
-                ],
+                links: [{ label: 'GitHub', href: profile.github }],
               })
             }
             className="fig-label text-left transition-colors hover:text-app"
@@ -98,7 +95,7 @@ export function About() {
                     detail: f.detail,
                     links:
                       f.id === 'path' || f.id === 'studying'
-                        ? [{ label: 'Download resume', href: profile.resume }]
+                        ? [{ label: 'GitHub', href: profile.github }]
                         : undefined,
                   })
                 }
