@@ -9,11 +9,11 @@ export function About() {
   const { openDetail } = useDetail()
 
   return (
-    <Section id="about" fig="01 — About" title="Between the lab bench and the build.">
-      <div className="grid gap-12 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
-        <div className="space-y-5 text-lg leading-relaxed text-muted">
-          <p className="max-w-2xl">{profile.intro}</p>
-          <p className="max-w-2xl">
+    <Section id="about" fig="Fig. 01 — About" title="Between the lab bench and the build.">
+      <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
+        <div className="space-y-6 text-lg leading-relaxed text-muted">
+          <p>{profile.intro}</p>
+          <p>
             The two halves of that work feed each other. Reading how a disease
             unravels a system tells me what a person will actually need; building
             the tool tells me which parts of the science matter in practice.
@@ -21,35 +21,71 @@ export function About() {
             scoping review to the wet bench — and assistive software is the answer
             I can ship today.
           </p>
-          <p className="max-w-2xl text-base">{profile.path}</p>
-
-          <div className="pt-4">
-            <p className="meta-signal mb-4">Education</p>
-            <ul className="border-t border-line">
-              {education.map((e) => (
-                <li
+          <button
+            type="button"
+            onClick={() =>
+              openDetail({
+                kind: 'about',
+                title: 'Where I’m headed',
+                eyebrow: 'Intended path',
+                summary: profile.path,
+                detail:
+                  'Dual enrollment across USF, HCC, and UF (roughly 85 credit hours) plus a CSIT Magnet track at Middleton High School. The work spans wet lab, computational biology, NLP, and product-building — aimed at the intersection of biology, medicine, and computation.',
+                highlights: [
+                  'Exploring Biomedical Engineering, Biology, CS, and Data Science',
+                  '~85 dual-enrollment credit hours',
+                  'Research across USF Koria Lab, USF Cheng Lab, MIT CSAIL Mantis, Oakland NLP, NASA GeneLab',
+                  'Class of 2027',
+                ],
+                links: [
+                  { label: 'Download resume', href: profile.resume },
+                  { label: 'GitHub', href: profile.github },
+                ],
+              })
+            }
+            className="fig-label text-left transition-colors hover:text-app"
+          >
+            Intended path — open →
+          </button>
+          <div>
+            <div className="fig-label mb-4">Education</div>
+            <motion.ul
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-40px' }}
+              variants={reduce ? undefined : staggerContainer}
+              className="list-stack space-y-px"
+            >
+              {education.map((e, i) => (
+                <motion.li
                   key={e.org}
-                  className="flex flex-wrap items-baseline justify-between gap-2 border-b border-line py-3"
+                  variants={reduce ? undefined : staggerItem}
+                  className="group relative flex items-baseline justify-between gap-4 px-5 py-3 text-base"
                 >
-                  <div>
-                    <span className="text-app">{e.org}</span>
-                    <span className="text-muted"> · {e.detail}</span>
+                  <span className="accent-rail" aria-hidden="true" />
+                  <div className="flex items-baseline gap-3">
+                    <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+                    <div>
+                      <span className="text-app">{e.org}</span>
+                      <span className="text-muted"> · {e.detail}</span>
+                    </div>
                   </div>
-                  <span className="meta">{e.period}</span>
-                </li>
+                  <span className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                    {e.period}
+                  </span>
+                </motion.li>
               ))}
-            </ul>
+            </motion.ul>
           </div>
         </div>
-
         <motion.ul
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: '-40px' }}
           variants={reduce ? undefined : staggerContainer}
-          className="h-max border-t border-line"
+          className="panel h-max !p-0"
         >
-          {aboutFacts.map((f) => (
+          {aboutFacts.map((f, i) => (
             <motion.li key={f.id} variants={reduce ? undefined : staggerItem}>
               <button
                 type="button"
@@ -66,10 +102,19 @@ export function About() {
                         : undefined,
                   })
                 }
-                className="row-link group w-full"
+                className="group/focus relative w-full border-b border-line px-5 py-4 text-left last:border-0"
               >
-                <p className="meta-signal">{f.label}</p>
-                <p className="text-lg text-app">{f.value}</p>
+                <span className="accent-rail" aria-hidden="true" />
+                <div className="mb-1 flex items-center justify-between">
+                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
+                    {f.label}
+                  </div>
+                  <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+                </div>
+                <div className="text-app">{f.value}</div>
+                <span className="mt-2 inline-block font-mono text-[0.62rem] uppercase tracking-widest text-muted transition-colors group-hover/focus:text-signal">
+                  More →
+                </span>
               </button>
             </motion.li>
           ))}

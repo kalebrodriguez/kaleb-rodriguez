@@ -13,65 +13,71 @@ export function Research() {
   return (
     <Section
       id="research"
-      fig="02 — Research"
+      fig="Fig. 02 — Research"
       title="Questions I keep coming back to."
       alt
     >
-      <motion.div
+      <motion.ul
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: '-40px' }}
+        viewport={{ once: true, margin: '-60px' }}
         variants={reduce ? undefined : staggerContainer}
-        className="border-t border-line"
+        className="list-stack space-y-px"
       >
-        {research.map((r) => (
-          <motion.button
-            key={r.id}
-            type="button"
-            variants={reduce ? undefined : staggerItem}
-            onClick={() =>
-              openDetail({
-                kind: 'research',
-                title: r.title,
-                eyebrow: [r.org, r.meta].filter(Boolean).join(' · '),
-                status: r.status,
-                summary: r.plain,
-                detail: r.detail,
-                highlights: r.highlights,
-                links: r.links.length
-                  ? r.links
-                  : r.link
-                    ? [{ label: r.linkLabel || 'Open', href: r.link }]
-                    : [],
-              })
-            }
-            className="row-link group grid-cols-1 md:grid-cols-[7.5rem_1fr_auto]"
-          >
-            <div className="flex items-center gap-3 md:block">
-              <StatusTag status={r.status} />
-            </div>
-            <div className="min-w-0">
-              <h3 className="font-display text-lg font-600 leading-snug tracking-tight sm:text-xl">
-                {r.title}
+        {research.map((r, i) => (
+          <motion.li key={r.id} variants={reduce ? undefined : staggerItem}>
+            <button
+              type="button"
+              onClick={() =>
+                openDetail({
+                  kind: 'research',
+                  title: r.title,
+                  eyebrow: [r.org, r.meta].filter(Boolean).join(' · '),
+                  status: r.status,
+                  summary: r.plain,
+                  detail: r.detail,
+                  highlights: r.highlights,
+                  links: r.links.length
+                    ? r.links
+                    : r.link
+                      ? [{ label: r.linkLabel || 'Open', href: r.link }]
+                      : [],
+                })
+              }
+              className="card-hover group relative block w-full overflow-hidden p-6 text-left sm:p-7"
+            >
+              <span className="accent-rail" aria-hidden="true" />
+              <span aria-hidden="true" className="scan-sweep" />
+              <div className="mb-3 flex flex-wrap items-center gap-3">
+                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+                <StatusTag status={r.status} />
+                <span className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  {r.org}
+                </span>
+                {r.meta && (
+                  <span className="font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                    · {r.meta}
+                  </span>
+                )}
+              </div>
+              <h3 className="font-display flex items-start gap-2 text-xl font-500 leading-snug">
+                <span>{r.title}</span>
+                <ArrowUpRight
+                  size={18}
+                  className="mt-1 shrink-0 text-muted transition-colors group-hover:text-signal"
+                />
               </h3>
-              <p className="mt-2 text-sm text-muted">
-                {r.org}
-                {r.meta ? ` · ${r.meta}` : ''}
-              </p>
-              <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted md:pr-8">
-                {r.plain}
-              </p>
-            </div>
-            <ArrowUpRight
-              size={18}
-              className="mt-1 hidden text-muted transition-colors group-hover:text-signal md:block"
-            />
-          </motion.button>
+              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted">{r.plain}</p>
+              <span className="mt-3 inline-block font-mono text-[0.68rem] uppercase tracking-widest text-signal">
+                {r.links.length || r.link ? 'Open details & links →' : 'Open details →'}
+              </span>
+            </button>
+          </motion.li>
         ))}
-      </motion.div>
-      <p className="meta mt-8 max-w-2xl normal-case tracking-normal">
-        Ongoing work is described in general terms only. Unpublished data and confidential
-        materials are omitted.
+      </motion.ul>
+      <p className="mt-6 max-w-2xl font-mono text-xs leading-relaxed text-muted">
+        Note: ongoing work is described in general terms only. Unpublished data and
+        confidential materials are intentionally omitted.
       </p>
     </Section>
   )
