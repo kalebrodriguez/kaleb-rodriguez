@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Download, Mail } from 'lucide-react'
+import { ArrowUpRight, Mail } from 'lucide-react'
 import { GithubIcon, LinkedinIcon } from './icons'
 import { profile } from '../data/content'
 import { ease } from './motion'
@@ -55,10 +55,6 @@ export function Contact() {
           <div className="mt-10 flex flex-wrap gap-3">
             <a href={`mailto:${profile.email}`} className="btn-primary group">
               <Mail size={16} /> {profile.email}
-            </a>
-            <a href={profile.resume} className="btn-ghost" download>
-              <Download size={16} /> Download resume
-              <ArrowUpRight size={14} />
             </a>
             <a
               href={profile.github}

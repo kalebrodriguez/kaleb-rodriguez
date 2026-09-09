@@ -1,6 +1,6 @@
-// All site content. Sourced only from public-facing material (public résumé,
-// public LinkedIn profile, public GitHub repos, project summaries). No private
-// records, contact numbers, credential IDs, or unpublished research data.
+// All site content. Sourced only from public-facing material (public LinkedIn
+// profile, public GitHub repos, project summaries). No private records, contact
+// numbers, credential IDs, or unpublished research data.
 
 export type DetailLink = { label: string; href: string }
 
@@ -50,12 +50,10 @@ export const profile = {
   email: 'kalebrodriguez@usf.edu',
   github: 'https://github.com/kalebrodriguez',
   linkedin: 'https://www.linkedin.com/in/kaleb-rodriguez-8212a235a/',
-  resume: `${import.meta.env.BASE_URL}Kaleb_Rodriguez_Resume.pdf`,
   tagline:
     'High-school researcher studying neurodegeneration and building software that reaches real users.',
   intro:
     'I split my time between the questions behind neurodegenerative disease and the tools that help people live with it — protein purification and mitophagy pathways on one screen, and assistive software on the other. I am a dual-enrollment student at the University of South Florida, Hillsborough College, and the University of Florida, graduating high school in 2027.',
-  path: 'Drawn to the intersection of computational methods with biology and medicine — exploring Biomedical Engineering, Biology, Computer Science, and Data Science through research across multiple university labs.',
 }
 
 export const focusAreas = [
@@ -440,7 +438,7 @@ export const experience: ExperienceItem[] = [
     id: 'adventhealth',
     org: 'AdventHealth Tampa — Progressive Care Unit',
     role: 'Clinical Support Assistant',
-    period: 'Dec 2025 — Present',
+    period: 'Dec 2025 — Aug 2026',
     note: 'Support nursing staff with patient mobility, comfort rounds, and a safe care environment.',
     detail:
       'Hospital PCU volunteering focused on bedside support — mobility assistance, comfort rounds, and keeping the unit well stocked for nursing staff.',
@@ -463,7 +461,7 @@ export const leadership: ExperienceItem[] = [
     id: 'eco',
     org: 'Environmental Conservation Organization (ECO)',
     role: 'President',
-    period: 'May 2025 — Present',
+    period: 'May 2025 — May 2026',
     note: 'Lead student sustainability initiatives with Keep Tampa Bay Beautiful.',
     detail:
       'Organize cleanups, e-waste drives, and campus outreach for a student-led environmental club.',
@@ -528,12 +526,6 @@ export const aboutFacts = [
     value: 'Dual enrollment — USF, HCC & UF',
     detail:
       'Roughly 85 dual-enrollment credit hours across programming, aging sciences, healthcare-adjacent coursework, and general education — plus a CSIT Magnet high-school track.',
-  },
-  {
-    id: 'path',
-    label: 'Exploring',
-    value: 'BME · Biology · CS · Data Science',
-    detail: profile.path,
   },
   {
     id: 'graduating',

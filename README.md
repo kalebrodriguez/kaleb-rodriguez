@@ -91,7 +91,7 @@ Append an entry to the `projects` array in `src/data/content.ts`:
 
 ### Public assets
 
-Static files (favicon, Open Graph image, a downloadable resume) go in
+Static files (favicon, Open Graph image) go in
 `public/` and are served from the site root under the `/kaleb-rodriguez/` base
 path.
 
