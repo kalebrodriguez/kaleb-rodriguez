@@ -29,7 +29,16 @@ export type ResearchItem = {
   highlights: string[]
   link?: string
   linkLabel?: string
+  image?: { src: string; alt: string }
   links: DetailLink[]
+}
+
+export type Update = {
+  id: string
+  date: string
+  source: string
+  title: string
+  href?: string
 }
 
 export type ExperienceItem = {
@@ -267,6 +276,10 @@ export const research: ResearchItem[] = [
     org: 'ThinkNeuro',
     link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
     linkLabel: 'Read the paper',
+    image: {
+      src: `${import.meta.env.BASE_URL}nrcp-2026.jpg`,
+      alt: 'Kaleb Rodriguez standing beside his PINK1/Parkin mitophagy poster at the National Research Conference at Penn',
+    },
     plain:
       'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease. Presented at the 2026 National Research Conference at Penn.',
     detail:
@@ -376,6 +389,50 @@ export const research: ResearchItem[] = [
       'PI: Dr. Weicheng Ma',
     ],
     links: [],
+  },
+]
+
+// Newest first. Dates only where they are publicly confirmed.
+export const updates: Update[] = [
+  {
+    id: 'mhacks',
+    date: 'Oct 2026',
+    source: 'MHacks',
+    title: 'Built One Market at MHacks in Ann Arbor: a real-time market of 1M persistent trading actors on SpacetimeDB',
+    href: 'https://one-market.tech',
+  },
+  {
+    id: 'nrcp',
+    date: '2026',
+    source: 'Penn NRC',
+    title: 'Presented my PINK1/Parkin mitophagy scoping review at the National Research Conference at Penn',
+    href: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
+  },
+  {
+    id: 'amgen',
+    date: 'Jul 2026',
+    source: 'Amgen',
+    title: 'DigitalTwin took 1st Place and Best Presenter at the Amgen STEM Entrepreneurship Camp pitch competition',
+    href: 'https://github.com/kalebrodriguez/digital-twin-1',
+  },
+  {
+    id: 'koria',
+    date: 'Jun 2026',
+    source: 'USF',
+    title: 'Joined the USF Koria Lab as a laboratory research assistant working on ELP fusion proteins',
+  },
+  {
+    id: 'mit',
+    date: 'May 2026',
+    source: 'MIT CSAIL',
+    title: 'Selected for the Mantis AI Rising Scholars program under Prof. Manolis Kellis',
+  },
+  {
+    id: 'neuromod',
+    date: '2026',
+    source: 'NYC Neuromodulation',
+    title: 'Presented first-author work on ML and dopaminergic / acetylcholinergic learning mechanisms',
+    href: 'https://doi.org/10.6084/m9.figshare.33115934',
   },
 ]
 

@@ -1,174 +1,70 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { ArrowUpRight, Mail } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from './icons'
-import { Connectome } from './Connectome'
-import { FieldReticle } from './FieldReticle'
-import { FluorophoreDust } from './FluorophoreDust'
-import { profile, focusAreas } from '../data/content'
-import { ease, staggerContainer, staggerItem } from './motion'
-import { useDetail } from './DetailDrawer'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { ArrowDown, ArrowUpRight } from 'lucide-react'
+import { profile } from '../data/content'
+import { ease } from './motion'
 
-const name = profile.name
-
+// The surface. The brain itself is drawn by <Tissue />; this is the type and
+// instrument readouts laid over it, which drift away as the dive begins.
 export function Hero() {
   const reduce = useReducedMotion()
-  const { openDetail } = useDetail()
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 600], [0, -120])
+  // Function form keeps opacity off the browser's ScrollTimeline path.
+  const fade = useTransform(scrollY, (v) => Math.max(0, 1 - v / 420))
+
+  const enter = (delay: number) =>
+    reduce
+      ? {}
+      : {
+          initial: { opacity: 0, y: 40 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 1, ease, delay },
+        }
 
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 opacity-75">
-        <Connectome />
-      </div>
-      <div className="pointer-events-none absolute inset-0 opacity-65">
-        <FluorophoreDust density={40} />
-      </div>
-      <div
-        className="pointer-events-none absolute inset-0 field-drift"
-        style={{
-          background:
-            'radial-gradient(90% 70% at 70% 20%, color-mix(in srgb, var(--signal) 12%, transparent), transparent 55%), radial-gradient(70% 60% at 15% 80%, color-mix(in srgb, var(--stain) 10%, transparent), transparent 50%)',
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(120% 90% at 50% 0%, transparent 35%, var(--bg) 94%)',
-        }}
-      />
-      <FieldReticle />
-
-      <div className="relative mx-auto max-w-6xl px-5 pb-16 pt-36 sm:px-8 sm:pb-24 sm:pt-44">
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease }}
-          className="fig-label mb-6"
-        >
-          Tampa, FL · Neuroscience × Software
+    <section id="top" className="relative h-[100svh] min-h-[640px]">
+      <motion.div style={reduce ? undefined : { y, opacity: fade }} className="relative mx-auto flex h-full max-w-7xl flex-col justify-end px-5 pb-20 sm:px-8 sm:pb-24">
+        <motion.p {...enter(0.1)} className="readout mb-6">
+          <span className="text-spike">●</span> Neuroscience × Software — {profile.location}
         </motion.p>
-
-        <h1
-          aria-label={name}
-          className="font-display text-[2.55rem] font-500 leading-[1.02] tracking-tight break-words sm:text-[5.4rem]"
-        >
-          {name.split('').map((ch, i) => (
-            <motion.span
-              key={`${ch}-${i}`}
-              initial={reduce ? false : { opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease, delay: reduce ? 0 : i * 0.028 }}
-              className="inline-block"
-              style={ch === ' ' ? { width: '0.35em' } : undefined}
-            >
-              {ch === ' ' ? '\u00a0' : ch}
-            </motion.span>
-          ))}
+        <h1 className="font-display text-[19vw] font-semibold leading-[0.82] sm:text-[11vw] lg:text-[9.5rem]">
+          <motion.span {...enter(0.2)} className="block">
+            Kaleb
+          </motion.span>
+          <motion.span {...enter(0.32)} className="block text-transparent [-webkit-text-stroke:1.5px_var(--color-text)]">
+            Rodriguez
+          </motion.span>
         </h1>
-
-        <motion.div
-          initial={reduce ? false : { scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.9, ease, delay: 0.45 }}
-          className="mt-5 h-px origin-left max-w-md"
-          style={{
-            background:
-              'linear-gradient(90deg, var(--signal), color-mix(in srgb, var(--stain) 70%, transparent), transparent)',
-          }}
-          aria-hidden="true"
-        />
-
-        <motion.p
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.2 }}
-          className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl"
-        >
-          {profile.tagline}
+        <motion.p {...enter(0.5)} className="mt-8 max-w-md text-lg leading-relaxed text-text/80">
+          High-school senior researching neurodegeneration and building software that
+          reaches real people.
         </motion.p>
-
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease, delay: 0.3 }}
-          className="mt-9 flex flex-wrap items-center gap-3"
-        >
-          <a href="#projects" className="btn-primary group">
-            View projects
-            <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <motion.div {...enter(0.6)} className="mt-8 flex flex-wrap gap-3">
+          <a href="#research" className="btn btn-spike">
+            Start the dive <ArrowDown size={17} />
           </a>
-          <a
-            href={profile.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost"
-          >
-            <GithubIcon size={16} /> GitHub
-          </a>
-          <a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-ghost"
-          >
-            <LinkedinIcon size={16} /> LinkedIn
-          </a>
-          <a href={`mailto:${profile.email}`} className="btn-ghost">
-            <Mail size={16} /> Email
+          <a href="#contact" className="btn btn-line">
+            Get in touch <ArrowUpRight size={16} />
           </a>
         </motion.div>
+      </motion.div>
 
-        <motion.dl
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          variants={reduce ? undefined : staggerContainer}
-          className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-line bg-[var(--line)] sm:grid-cols-4"
-        >
-          {focusAreas.map((f, i) => (
-            <motion.button
-              key={f.label}
-              type="button"
-              variants={reduce ? undefined : staggerItem}
-              onClick={() =>
-                openDetail({
-                  kind: 'about',
-                  title: f.label,
-                  eyebrow: 'Focus area',
-                  summary: f.detail,
-                  detail:
-                    'Click through Research and Projects for the papers, posters, and tools behind this focus.',
-                  links: [
-                    { label: 'Jump to research', href: '#research' },
-                    { label: 'Jump to projects', href: '#projects' },
-                  ],
-                })
-              }
-              className="group/focus relative overflow-hidden bg-surface p-5 text-left"
-            >
-              <span className="accent-rail" aria-hidden="true" />
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-[linear-gradient(90deg,var(--signal),transparent)] transition-transform duration-500 group-hover/focus:scale-x-100"
-              />
-              <div className="mb-3 flex items-center justify-between">
-                <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
-                <span
-                  aria-hidden="true"
-                  className="h-1.5 w-1.5 rounded-full bg-[var(--signal)] opacity-50 transition-opacity group-hover/focus:opacity-100"
-                />
-              </div>
-              <dt className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
-                {f.label}
-              </dt>
-              <dd className="mt-2 text-sm leading-relaxed text-muted">{f.detail}</dd>
-              <span className="mt-3 inline-block font-mono text-[0.62rem] uppercase tracking-widest text-muted transition-colors group-hover/focus:text-signal">
-                Explore →
-              </span>
-            </motion.button>
-          ))}
-        </motion.dl>
-      </div>
+      {/* Instrument readouts in the corners */}
+      <motion.div
+        style={reduce ? undefined : { opacity: fade }}
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-20 mx-auto hidden max-w-7xl justify-between px-8 sm:flex"
+      >
+        <span className="readout">Specimen — human cortex, in silico</span>
+        <span className="readout">Obj 1× · Scroll to magnify</span>
+      </motion.div>
+      <motion.div
+        style={reduce ? undefined : { opacity: fade }}
+        aria-hidden="true"
+        className="readout absolute bottom-8 right-8 hidden items-center gap-2 sm:flex"
+      >
+        Scroll <ArrowDown size={14} className="animate-bounce" />
+      </motion.div>
     </section>
   )
 }

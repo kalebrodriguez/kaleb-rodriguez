@@ -1,17 +1,14 @@
-import { Nav } from './components/Nav'
+import { Loader } from './components/Loader'
+import { Tissue } from './components/Tissue'
+import { Crosshair, DepthGauge, Nav } from './components/Chrome'
 import { Hero } from './components/Hero'
 import { About } from './components/About'
 import { Research } from './components/Research'
 import { Projects } from './components/Projects'
 import { Experience } from './components/Experience'
-import { SkillsAwards } from './components/SkillsAwards'
-import { Contact } from './components/Contact'
-import { Footer } from './components/Footer'
-import { ScrollProgress } from './components/ScrollProgress'
-import { KeywordMarquee } from './components/KeywordMarquee'
-import { ExcitationSpot } from './components/ExcitationSpot'
-import { Atmosphere } from './components/Atmosphere'
-import { CursorDot } from './components/CursorDot'
+import { Skills } from './components/Skills'
+import { Latest } from './components/Latest'
+import { Contact, Footer } from './components/Contact'
 import { DetailProvider } from './components/DetailDrawer'
 
 export default function App() {
@@ -19,28 +16,27 @@ export default function App() {
     <DetailProvider>
       <a
         href="#about"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-surface focus:px-4 focus:py-2 focus:text-sm"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:rounded-full focus:bg-spike focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
       >
         Skip to content
       </a>
-      <Atmosphere />
-      <ScrollProgress />
-      <ExcitationSpot />
-      <CursorDot />
-      <div className="relative z-10">
-        <Nav />
-        <main>
-          <Hero />
-          <KeywordMarquee />
-          <About />
-          <Research />
-          <Projects />
-          <Experience />
-          <SkillsAwards />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <Loader />
+      <Tissue />
+      <div className="grain" aria-hidden="true" />
+      <Crosshair />
+      <DepthGauge />
+      <Nav />
+      <main className="relative z-10 overflow-x-clip">
+        <Hero />
+        <About />
+        <Research />
+        <Projects />
+        <Experience />
+        <Skills />
+        <Latest />
+        <Contact />
+      </main>
+      <Footer />
     </DetailProvider>
   )
 }

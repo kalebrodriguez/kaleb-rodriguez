@@ -10,8 +10,8 @@ import {
 } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, X } from 'lucide-react'
-import { StatusTag } from './StatusTag'
-import type { DetailLink } from '../data/content'
+import { statusLabels, type DetailLink } from '../data/content'
+import { statusTone } from './stops'
 import { ease } from './motion'
 
 export type DetailPayload = {
@@ -24,6 +24,7 @@ export type DetailPayload = {
   highlights?: string[]
   stack?: string[]
   links?: DetailLink[]
+  image?: { src: string; alt: string }
 }
 
 type DetailContextValue = {
@@ -84,7 +85,7 @@ function DetailDrawer({
           <motion.button
             type="button"
             aria-label="Close details"
-            className="absolute inset-0 bg-[color-mix(in_srgb,var(--bg)_55%,transparent)] backdrop-blur-[2px]"
+            className="absolute inset-0 bg-ink/70 backdrop-blur-sm"
             initial={reduce ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -95,7 +96,7 @@ function DetailDrawer({
             role="dialog"
             aria-modal="true"
             aria-labelledby={titleId}
-            className="relative flex h-full w-full max-w-lg flex-col border-l border-line bg-surface shadow-[-24px_0_60px_-40px_rgba(0,0,0,0.65)]"
+            className="relative flex h-full w-full max-w-lg flex-col border-l border-line bg-ink-2 text-text shadow-[-24px_0_80px_-30px_rgba(255,181,71,0.25)]"
             initial={reduce ? false : { x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -103,14 +104,9 @@ function DetailDrawer({
           >
             <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-6">
               <div className="min-w-0">
-                <div className="fig-label">
-                  {payload.kind === 'project' && 'Specimen · Project'}
-                  {payload.kind === 'research' && 'Specimen · Research'}
-                  {payload.kind === 'experience' && 'Specimen · Experience'}
-                  {payload.kind === 'about' && 'Specimen · About'}
-                </div>
+                <div className="readout !text-spike">Specimen · {payload.kind}</div>
                 {payload.eyebrow && (
-                  <p className="mt-2 font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+                  <p className="readout mt-2">
                     {payload.eyebrow}
                   </p>
                 )}
@@ -118,7 +114,7 @@ function DetailDrawer({
               <button
                 type="button"
                 onClick={onClose}
-                className="btn-ghost !p-2"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line hover:border-spike"
                 aria-label="Close"
               >
                 <X size={18} />
@@ -126,21 +122,30 @@ function DetailDrawer({
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
-              <div className="mb-4 flex flex-wrap items-center gap-3">
-                {payload.status && <StatusTag status={payload.status} />}
-              </div>
+              {payload.image && (
+                <img
+                  src={payload.image.src}
+                  alt={payload.image.alt}
+                  className="mb-6 aspect-[4/3] w-full rounded-2xl object-cover object-[50%_35%]"
+                />
+              )}
+              {payload.status && (
+                <span className={`readout mb-4 inline-block rounded-full border px-2.5 py-1 ${statusTone[payload.status] ?? ''}`}>
+                  {statusLabels[payload.status] ?? payload.status}
+                </span>
+              )}
               <h2
                 id={titleId}
-                className="font-display text-3xl font-500 leading-tight tracking-tight"
+                className="font-display text-3xl font-semibold leading-tight sm:text-4xl"
               >
                 {payload.title}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-muted">{payload.summary}</p>
-              <p className="mt-5 text-sm leading-relaxed text-app">{payload.detail}</p>
+              <p className="mt-4 leading-relaxed text-text/85">{payload.detail}</p>
 
               {payload.highlights && payload.highlights.length > 0 && (
                 <div className="mt-8">
-                  <div className="fig-label mb-3">Highlights</div>
+                  <h3 className="readout mb-3">Highlights</h3>
                   <ul className="space-y-2">
                     {payload.highlights.map((h) => (
                       <li
@@ -149,7 +154,7 @@ function DetailDrawer({
                       >
                         <span
                           aria-hidden="true"
-                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--signal)]"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-spike"
                         />
                         <span>{h}</span>
                       </li>
@@ -160,10 +165,10 @@ function DetailDrawer({
 
               {payload.stack && payload.stack.length > 0 && (
                 <div className="mt-8">
-                  <div className="fig-label mb-3">Stack</div>
+                  <h3 className="readout mb-3">Stack</h3>
                   <ul className="flex flex-wrap gap-2">
                     {payload.stack.map((s) => (
-                      <li key={s} className="chip">
+                      <li key={s} className="rounded-full border border-line px-3 py-1 text-sm">
                         {s}
                       </li>
                     ))}
@@ -174,8 +179,7 @@ function DetailDrawer({
 
             {payload.links && payload.links.length > 0 && (
               <div className="border-t border-line px-5 py-4 sm:px-6">
-                <div className="fig-label mb-3">Open</div>
-                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-2">
                   {payload.links.map((l, i) => {
                     const internal = l.href.startsWith('#')
                     return (
@@ -184,7 +188,7 @@ function DetailDrawer({
                         href={l.href}
                         target={internal ? undefined : '_blank'}
                         rel={internal ? undefined : 'noopener noreferrer'}
-                        className={i === 0 ? 'btn-primary group' : 'btn-ghost'}
+                        className={i === 0 ? 'btn btn-spike !py-2.5 text-sm' : 'btn btn-line !py-2.5 text-sm'}
                         onClick={() => {
                           if (internal) onClose()
                         }}

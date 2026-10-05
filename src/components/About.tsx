@@ -1,99 +1,84 @@
-import { motion, useReducedMotion } from 'framer-motion'
-import { Section } from './Section'
-import { profile, education, aboutFacts } from '../data/content'
-import { staggerContainer, staggerItem } from './motion'
-import { useDetail } from './DetailDrawer'
+import { aboutFacts, education, profile, research } from '../data/content'
+import { Rise, Stop } from './Stop'
 
+// Cortex: who I am, with the NRCP photo framed in a microscope eyepiece.
 export function About() {
-  const reduce = useReducedMotion()
-  const { openDetail } = useDetail()
+  const photo = research.find((r) => r.image)?.image
 
   return (
-    <Section id="about" fig="Fig. 01 — About" title="Between the lab bench and the build.">
-      <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
-        <div className="space-y-6 text-lg leading-relaxed text-muted">
-          <p>{profile.intro}</p>
-          <p>
-            The two halves of that work feed each other. Reading how a disease
-            unravels a system tells me what a person will actually need; building
-            the tool tells me which parts of the science matter in practice.
-            Neurodegeneration is the throughline — from a published Parkinson’s
-            scoping review to the wet bench — and assistive software is the answer
-            I can ship today.
-          </p>
-          <div>
-            <div className="fig-label mb-4">Education</div>
-            <motion.ul
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-40px' }}
-              variants={reduce ? undefined : staggerContainer}
-              className="list-stack space-y-px"
-            >
-              {education.map((e, i) => (
-                <motion.li
-                  key={e.org}
-                  variants={reduce ? undefined : staggerItem}
-                  className="group relative flex items-baseline justify-between gap-4 px-5 py-3 text-base"
-                >
-                  <span className="accent-rail" aria-hidden="true" />
-                  <div className="flex items-baseline gap-3">
-                    <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
-                    <div>
-                      <span className="text-app">{e.org}</span>
-                      <span className="text-muted"> · {e.detail}</span>
-                    </div>
-                  </div>
-                  <span className="whitespace-nowrap font-mono text-[0.68rem] uppercase tracking-widest text-muted">
-                    {e.period}
-                  </span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-        </div>
-        <motion.ul
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-40px' }}
-          variants={reduce ? undefined : staggerContainer}
-          className="panel h-max !p-0"
-        >
-          {aboutFacts.map((f, i) => (
-            <motion.li key={f.id} variants={reduce ? undefined : staggerItem}>
-              <button
-                type="button"
-                onClick={() =>
-                  openDetail({
-                    kind: 'about',
-                    title: f.label,
-                    eyebrow: 'Profile',
-                    summary: f.value,
-                    detail: f.detail,
-                    links:
-                      f.id === 'studying'
-                        ? [{ label: 'GitHub', href: profile.github }]
-                        : undefined,
-                  })
-                }
-                className="group/focus relative w-full border-b border-line px-5 py-4 text-left last:border-0"
-              >
-                <span className="accent-rail" aria-hidden="true" />
-                <div className="mb-1 flex items-center justify-between">
-                  <div className="font-mono text-[0.7rem] uppercase tracking-widest text-signal">
-                    {f.label}
-                  </div>
-                  <span className="index-mark">{String(i + 1).padStart(2, '0')}</span>
+    <Stop id="about" title="Between the lab bench and the build.">
+      <div className="grid items-center gap-16 lg:grid-cols-[1fr_1.1fr]">
+        <Rise>{photo && <Eyepiece src={photo.src} alt={photo.alt} />}</Rise>
+
+        <div>
+          <Rise>
+            <p className="text-xl leading-relaxed text-text/90 sm:text-2xl sm:leading-relaxed">{profile.intro}</p>
+          </Rise>
+          <Rise delay={0.1}>
+            <dl className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3">
+              {aboutFacts.map((f) => (
+                <div key={f.id} className="bg-ink-2 p-5">
+                  <dt className="readout">{f.label}</dt>
+                  <dd className="mt-2 font-display text-lg leading-tight">{f.value}</dd>
                 </div>
-                <div className="text-app">{f.value}</div>
-                <span className="mt-2 inline-block font-mono text-[0.62rem] uppercase tracking-widest text-muted transition-colors group-hover/focus:text-signal">
-                  More →
-                </span>
-              </button>
-            </motion.li>
-          ))}
-        </motion.ul>
+              ))}
+            </dl>
+          </Rise>
+          <Rise delay={0.2}>
+            <h3 className="readout mt-12">Education</h3>
+            <ul className="mt-4 divide-y divide-line border-y border-line">
+              {education.map((e) => (
+                <li key={e.org} className="flex items-baseline justify-between gap-4 py-3.5">
+                  <span>
+                    <span className="font-medium">{e.org}</span>
+                    <span className="block text-sm text-muted sm:inline sm:pl-3">{e.detail}</span>
+                  </span>
+                  <span className="readout shrink-0">{e.period}</span>
+                </li>
+              ))}
+            </ul>
+          </Rise>
+        </div>
       </div>
-    </Section>
+    </Stop>
+  )
+}
+
+function Eyepiece({ src, alt }: { src: string; alt: string }) {
+  return (
+    <figure className="relative mx-auto aspect-square w-full max-w-[460px]">
+      {/* Rotating graduated ring */}
+      <svg viewBox="0 0 200 200" className="absolute inset-0 h-full w-full animate-[spin-slow_80s_linear_infinite]" aria-hidden="true">
+        <circle cx="100" cy="100" r="98" fill="none" stroke="rgb(239 234 246 / 0.15)" />
+        {Array.from({ length: 72 }, (_, i) => {
+          const a = (i / 72) * Math.PI * 2
+          const long = i % 6 === 0
+          const r1 = 98
+          const r2 = long ? 92 : 95
+          return (
+            <line
+              key={i}
+              x1={100 + Math.cos(a) * r1}
+              y1={100 + Math.sin(a) * r1}
+              x2={100 + Math.cos(a) * r2}
+              y2={100 + Math.sin(a) * r2}
+              stroke={long ? 'var(--color-spike)' : 'rgb(239 234 246 / 0.3)'}
+              strokeWidth={long ? 0.8 : 0.5}
+            />
+          )
+        })}
+      </svg>
+      <div className="absolute inset-[7%] overflow-hidden rounded-full border border-line shadow-[0_0_80px_-10px_rgb(255_181_71/0.35)]">
+        <img src={src} alt={alt} loading="lazy" className="h-full w-full scale-110 object-cover object-[50%_35%]" />
+        {/* Lens vignette + crosshair */}
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,transparent_55%,rgb(7_6_12/0.75)_100%)]" />
+        <div className="pointer-events-none absolute left-1/2 top-[8%] h-[84%] w-px bg-text/20" />
+        <div className="pointer-events-none absolute left-[8%] top-1/2 h-px w-[84%] bg-text/20" />
+      </div>
+      <figcaption className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap">
+        <span className="h-px w-10 bg-spike" />
+        <span className="readout">Obj 40× · NRCP at Penn, 2026</span>
+      </figcaption>
+    </figure>
   )
 }
