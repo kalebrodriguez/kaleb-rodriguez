@@ -82,6 +82,28 @@ export const focusAreas = [
 // status: active | ongoing | shipped | prototype | concept
 export const projects: Project[] = [
   {
+    id: 'one-market',
+    name: 'One Market',
+    status: 'shipped',
+    kind: 'Real-time market simulation · MHacks 2026',
+    summary:
+      'A shared synthetic market where up to a million persistent autonomous trading actors and human players trade in one world, built at MHacks 2026.',
+    detail:
+      'Co-built a transactional Rust/WebAssembly backend on SpacetimeDB Maincloud with indexed actor scheduling, deterministic O(K log K) uniform-price batch auctions, and atomic settlement. In a 180-second local benchmark it sustained 1 million persistent actors, committing 45 million state updates (250,000 updates/sec) with zero skipped simulation ticks. A lossless compact encoding with full-width fallback cut the serialized actor payload 44% (132 → 74 bytes) and mean transaction time 11% in paired local benchmarks.',
+    highlights: [
+      '1M persistent trading actors · 45M state updates in 180 s',
+      '250,000 updates/sec with zero skipped ticks',
+      'Deterministic O(K log K) batch auctions with atomic settlement',
+      'Actor payload cut 44% (132 → 74 bytes) via lossless compact encoding',
+    ],
+    stack: ['Rust', 'WebAssembly', 'SpacetimeDB', 'Docker', 'React'],
+    link: 'https://one-market.tech',
+    links: [
+      { label: 'Open live demo', href: 'https://one-market.tech' },
+      { label: 'GitHub repository', href: 'https://github.com/nkuhanas/one-market' },
+    ],
+  },
+  {
     id: 'neuropd',
     name: 'NeuroPD',
     status: 'active',
@@ -246,12 +268,12 @@ export const research: ResearchItem[] = [
     link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
     linkLabel: 'Read the paper',
     plain:
-      'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease. Accepted for presentation at the 2026 National Research Conference at Penn.',
+      'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease. Presented at the 2026 National Research Conference at Penn.',
     detail:
-      'Co-authored preprint on Research Square examining nanoparticle strategies aimed at the PINK1/Parkin mitophagy pathway. The work synthesizes published evidence on mitochondrial quality control in Parkinson’s and will be presented at NRCP at the University of Pennsylvania.',
+      'Co-authored preprint on Research Square examining nanoparticle strategies aimed at the PINK1/Parkin mitophagy pathway. The work synthesizes published evidence on mitochondrial quality control in Parkinson’s and was presented at NRCP at the University of Pennsylvania.',
     highlights: [
       'Research Square preprint with DOI',
-      'Accepted to National Research Conference at Penn (2026)',
+      'Presented at the National Research Conference at Penn (2026)',
       'Focus: PINK1/Parkin mitophagy in Parkinson’s',
       'Collaborative ThinkNeuro authorship',
     ],
@@ -532,12 +554,12 @@ export const aboutFacts = [
     label: 'Graduating',
     value: 'High school, 2027',
     detail:
-      'Rising senior at Middleton High School (CSIT Magnet), Class of 2027, with AP Scholar with Honor recognition.',
+      'Senior at Middleton High School (CSIT Magnet), Class of 2027, with AP Scholar with Honor recognition.',
   },
 ]
 
 export const skills = {
-  Languages: ['Python', 'R', 'Swift / SwiftUI', 'JavaScript', 'TypeScript', 'Java', 'HTML', 'CSS'],
+  Languages: ['Python', 'Rust', 'R', 'Swift / SwiftUI', 'JavaScript', 'TypeScript', 'Java', 'HTML', 'CSS'],
   'Research & data': [
     'Computational biology',
     'Protein language models (ESM2)',
@@ -548,7 +570,7 @@ export const skills = {
     'Data analysis',
   ],
   'Wet lab': ['Protein expression', 'Purification (ITC)', 'Gel electrophoresis', 'Biosafety'],
-  Tools: ['Git / GitHub', 'FastAPI', 'MediaPipe', 'Supabase', 'Networking fundamentals'],
+  Tools: ['Git / GitHub', 'WebAssembly', 'SpacetimeDB', 'Docker', 'FastAPI', 'MediaPipe', 'Supabase', 'Networking fundamentals'],
   Spoken: ['English (native)', 'Amharic (fluent)'],
 }
 
