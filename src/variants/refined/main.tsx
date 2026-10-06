@@ -1,10 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './magazine.css'
-import { Magazine } from './Magazine'
+import './refined.css'
+import { Refined } from './Refined'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Magazine />
+    <Refined />
   </StrictMode>,
 )

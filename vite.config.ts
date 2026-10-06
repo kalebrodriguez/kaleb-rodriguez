@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 // Project pages are served from https://kalebrodriguez.github.io/kaleb-rodriguez/
-// options.html, notebook.html and magazine.html are design options under review.
+// options.html, notebook.html and refined.html are design options under review.
 export default defineConfig({
   base: '/kaleb-rodriguez/',
   plugins: [react(), tailwindcss()],
@@ -14,7 +14,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         options: resolve(__dirname, 'options.html'),
         notebook: resolve(__dirname, 'notebook.html'),
-        magazine: resolve(__dirname, 'magazine.html'),
+        refined: resolve(__dirname, 'refined.html'),
       },
     },
   },
