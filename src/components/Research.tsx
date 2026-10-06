@@ -41,7 +41,22 @@ export function Research() {
               <span className="h-2 w-2 rounded-full bg-spike shadow-[0_0_14px_3px_rgb(255_181_71/0.8)] sm:h-2.5 sm:w-2.5" />
             </span>
             <Rise delay={i * 0.03}>
-              <article className="glass group grid gap-6 rounded-3xl p-6 transition-colors hover:border-spike/30 sm:p-8 md:grid-cols-[1fr_auto]">
+              <article className={`glass group grid gap-6 rounded-3xl p-6 transition-colors hover:border-spike/30 sm:p-8 ${
+                  r.image ? 'md:grid-cols-[minmax(0,240px)_1fr_auto]' : 'md:grid-cols-[1fr_auto]'
+                }`}>
+                {r.image && (
+                  <figure className="relative overflow-hidden rounded-2xl border border-line">
+                    <img
+                      src={r.image.src}
+                      alt={r.image.alt}
+                      loading="lazy"
+                      className="aspect-[4/3] h-full w-full object-cover object-[45%_40%] transition-transform duration-700 group-hover:scale-105 md:aspect-[3/4]"
+                    />
+                    <figcaption className="readout absolute bottom-0 inset-x-0 bg-gradient-to-t from-ink/90 to-transparent px-3 pb-2.5 pt-8 !text-text">
+                      Presenting at Penn
+                    </figcaption>
+                  </figure>
+                )}
                 <button
                   type="button"
                   className="text-left"

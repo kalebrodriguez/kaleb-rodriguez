@@ -281,8 +281,8 @@ export const research: ResearchItem[] = [
     link: 'https://doi.org/10.21203/rs.3.rs-10308858/v1',
     linkLabel: 'Read the paper',
     image: {
-      src: `${import.meta.env.BASE_URL}nrcp-2026.jpg`,
-      alt: 'Kaleb Rodriguez standing beside his PINK1/Parkin mitophagy poster at the National Research Conference at Penn',
+      src: `${import.meta.env.BASE_URL}nrcp-presenting.jpg`,
+      alt: 'Kaleb Rodriguez presenting his PINK1/Parkin mitophagy poster at the National Research Conference at Penn',
     },
     plain:
       'A scoping review of whether nanoparticles that target damaged mitochondria could restore the cell’s quality-control system (mitophagy) that fails in Parkinson’s disease. Presented at the 2026 National Research Conference at Penn.',
