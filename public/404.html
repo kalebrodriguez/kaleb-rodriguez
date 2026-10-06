@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
     <link rel="icon" type="image/svg+xml" href="/kaleb-rodriguez/favicon.svg" />
-    <title>404 — Page not found · Kaleb Rodriguez</title>
+    <link rel="apple-touch-icon" href="/kaleb-rodriguez/apple-touch-icon.png" />
+    <title>Page not found · Kaleb Rodriguez</title>
     <style>
       :root { color-scheme: dark; }
       * { box-sizing: border-box; }
@@ -13,45 +15,57 @@
         min-height: 100vh;
         display: grid;
         place-items: center;
-        background: #0a0e17;
-        color: #e7ecf5;
-        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background:
+          radial-gradient(45% 40% at 50% 100%, rgb(163 92 255 / 0.32), transparent 70%),
+          #000;
+        color: #f5f5f7;
+        font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
         text-align: center;
-        padding: 2rem;
+        padding: 2rem 16px;
       }
+      main { max-width: 34rem; }
+      img { width: 72px; height: 72px; border-radius: 16px; }
       .code {
-        font-family: 'JetBrains Mono', ui-monospace, monospace;
-        letter-spacing: 0.3em;
-        color: #38d6c4;
-        font-size: 0.8rem;
-        text-transform: uppercase;
+        margin-top: 2rem;
+        font-size: clamp(4.5rem, 18vw, 8rem);
+        font-weight: 700;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        background: linear-gradient(90deg, #4f7cff, #a35cff 45%, #ff5ea8 75%, #ffb547);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
       h1 {
-        font-family: 'Syne', system-ui, sans-serif;
-        font-size: clamp(2.5rem, 8vw, 4.5rem);
-        font-weight: 600;
-        margin: 0.75rem 0 0.5rem;
+        font-size: clamp(1.75rem, 5vw, 2.5rem);
+        font-weight: 700;
         letter-spacing: -0.03em;
+        margin: 0.75rem 0 0.5rem;
       }
-      p { color: #8792a6; max-width: 30rem; line-height: 1.6; }
+      p { color: #86868b; font-size: 1.1rem; line-height: 1.55; margin: 0; }
       a {
         display: inline-block;
-        margin-top: 1.75rem;
-        background: #38d6c4;
-        color: #0a0e17;
+        margin-top: 2rem;
+        background: #0071e3;
+        color: #fff;
         text-decoration: none;
+        font-size: 1.05rem;
         font-weight: 500;
-        padding: 0.75rem 1.5rem;
-        border-radius: 6px;
+        padding: 0.8rem 1.6rem;
+        border-radius: 999px;
       }
+      a:hover { background: #0077ed; }
+      a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
     </style>
   </head>
   <body>
     <main>
-      <div class="code">Error 404 — signal lost</div>
-      <h1>This page didn't map.</h1>
-      <p>The connection you followed doesn't lead anywhere. Let's get you back to the main graph.</p>
-      <a href="/kaleb-rodriguez/">Return home</a>
+      <img src="/kaleb-rodriguez/favicon.svg" alt="" />
+      <div class="code">404.</div>
+      <h1>This signal didn’t fire.</h1>
+      <p>The page you followed doesn’t exist, or it moved. The rest of the site is one tap away.</p>
+      <a href="/kaleb-rodriguez/">Back to home</a>
     </main>
   </body>
 </html>
