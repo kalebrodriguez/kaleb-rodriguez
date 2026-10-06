@@ -5,7 +5,7 @@ researcher working on neurodegeneration, bioinformatics, and assistive
 software. The site presents his research, projects, experience, and leadership
 in a single, fast, accessible page.
 
-**Live:** https://kalebrodriguez.github.io/kaleb-rodriguez/
+**Live:** https://kaleb-rodriguez.tech/
 
 ## Design
 
@@ -49,9 +49,9 @@ npm run preview    # serve the production build locally
 ## Deployment
 
 Pushes to `main` trigger `.github/workflows/deploy.yml`, which lints, type
-checks, builds, and publishes `dist/` to GitHub Pages. Because the site is
-served from a project page, the Vite `base` is set to `/kaleb-rodriguez/` in
-`vite.config.ts` — update that if the repository is renamed.
+checks, builds, and publishes `dist/` to GitHub Pages. The site is served from
+the custom domain `kaleb-rodriguez.tech` (set by `public/CNAME`), so the Vite
+`base` in `vite.config.ts` is `/`.
 
 ## Project structure
 
@@ -90,8 +90,7 @@ Append an entry to the `projects` array in `src/data/content.ts`:
 ### Public assets
 
 Static files (favicon, Open Graph image) go in
-`public/` and are served from the site root under the `/kaleb-rodriguez/` base
-path.
+`public/` and are served from the site root.
 
 ## Privacy note
 

@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// Project pages are served from https://kalebrodriguez.github.io/kaleb-rodriguez/
+// Served from the custom domain root: https://kaleb-rodriguez.tech/
 export default defineConfig({
-  base: '/kaleb-rodriguez/',
+  base: '/',
   plugins: [react(), tailwindcss()],
 })
