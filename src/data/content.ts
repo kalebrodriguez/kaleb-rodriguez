@@ -59,6 +59,10 @@ export const profile = {
   email: 'kalebrodriguez@usf.edu',
   github: 'https://github.com/kalebrodriguez',
   linkedin: 'https://www.linkedin.com/in/kaleb-rodriguez-8212a235a/',
+  photo: {
+    src: `${import.meta.env.BASE_URL}kaleb-portrait.jpg`,
+    alt: 'Kaleb Rodriguez in a suit, sitting on the edge of a fountain on a university campus',
+  },
   tagline:
     'High-school researcher studying neurodegeneration and building software that reaches real users.',
   intro:

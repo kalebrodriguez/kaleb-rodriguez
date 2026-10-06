@@ -1,14 +1,14 @@
-import { aboutFacts, education, profile, research } from '../data/content'
+import { aboutFacts, education, profile } from '../data/content'
 import { Rise, Stop } from './Stop'
 
-// Cortex: who I am, with the NRCP photo framed in a microscope eyepiece.
+// Cortex: who I am, with my portrait framed in a microscope eyepiece.
 export function About() {
-  const photo = research.find((r) => r.image)?.image
-
   return (
     <Stop id="about" title="Between the lab bench and the build.">
       <div className="grid items-center gap-16 lg:grid-cols-[1fr_1.1fr]">
-        <Rise>{photo && <Eyepiece src={photo.src} alt={photo.alt} />}</Rise>
+        <Rise>
+          <Eyepiece src={profile.photo.src} alt={profile.photo.alt} />
+        </Rise>
 
         <div>
           <Rise>
@@ -69,7 +69,7 @@ function Eyepiece({ src, alt }: { src: string; alt: string }) {
         })}
       </svg>
       <div className="absolute inset-[7%] overflow-hidden rounded-full border border-line shadow-[0_0_80px_-10px_rgb(255_181_71/0.35)]">
-        <img src={src} alt={alt} loading="lazy" className="h-full w-full scale-110 object-cover object-[50%_35%]" />
+        <img src={src} alt={alt} loading="lazy" className="h-full w-full origin-[47%_62%] scale-[1.6] object-cover object-[48%_74%]" />
         {/* Lens vignette + crosshair */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,transparent_55%,rgb(7_6_12/0.75)_100%)]" />
         <div className="pointer-events-none absolute left-1/2 top-[8%] h-[84%] w-px bg-text/20" />
@@ -77,7 +77,7 @@ function Eyepiece({ src, alt }: { src: string; alt: string }) {
       </div>
       <figcaption className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-3 whitespace-nowrap">
         <span className="h-px w-10 bg-spike" />
-        <span className="readout">Obj 40× · NRCP at Penn, 2026</span>
+        <span className="readout">Obj 40× · Specimen: Kaleb</span>
       </figcaption>
     </figure>
   )
