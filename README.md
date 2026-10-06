@@ -9,13 +9,12 @@ in a single, fast, accessible page.
 
 ## Design
 
-The visual direction is a "specimen field / research journal": a dark
-microscopy-inspired canvas with a fluorescence-cyan signal accent, a
-geometric futuristic masthead (Syne), body type in Space Grotesk, and section
-eyebrows set as figure labels
-(`Fig. 01 — About`) that mirror the way figures are numbered in a paper. The
-signature element is an abstract **connectome** — a node/edge graph behind the
-hero. A light theme is fully supported and respects `prefers-color-scheme`.
+Apple-style restraint. A dark, cinematic hero where a single neuron turns and
+fires an action potential as you scroll, followed by light, readable chapters:
+a highlights grid, the Penn research feature, a project carousel, experience,
+skills, and latest news. Type is Inter (optical sizing) with a Caveat
+signature; color comes from one blue-violet-pink-amber gradient used sparingly.
+Motion respects `prefers-reduced-motion`.
 
 ## Tech stack
 
@@ -24,9 +23,8 @@ hero. A light theme is fully supported and respects `prefers-color-scheme`.
 | Build        | [Vite](https://vite.dev)                 |
 | UI           | React 19 + TypeScript                    |
 | Styling      | Tailwind CSS v4 (`@tailwindcss/vite`)    |
-| Motion       | Framer Motion (restrained, reveal-only)  |
-| Icons        | lucide-react (+ one inline GitHub mark)  |
-| Fonts        | Syne, Space Grotesk, JetBrains Mono (self-hosted via `@fontsource`, no external requests) |
+| Motion       | Framer Motion (scroll-driven hero + reveals) |
+| Fonts        | Inter, Caveat (self-hosted via `@fontsource`, no external requests) |
 | Hosting      | GitHub Pages via GitHub Actions          |
 
 Chosen over a heavier framework because the site is fully static, needs no
@@ -63,10 +61,10 @@ served from a project page, the Vite `base` is set to `/kaleb-rodriguez/` in
 ├── public/                   # favicon.svg, og.png, 404.html, .nojekyll
 └── src/
     ├── main.tsx
-    ├── index.css             # theme tokens (light/dark) + fonts
-    ├── App.tsx               # page composition
-    ├── data/content.ts       # ALL site content lives here
-    └── components/           # Nav, Hero, Connectome, sections, Footer
+    ├── index.css             # theme tokens + fonts
+    ├── App.tsx               # all page sections
+    ├── Neuron.tsx            # the hero neuron (SVG)
+    └── data/content.ts       # ALL site content lives here
 ```
 
 ## Updating content
