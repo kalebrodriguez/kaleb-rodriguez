@@ -69,7 +69,7 @@ function Eyepiece({ src, alt }: { src: string; alt: string }) {
         })}
       </svg>
       <div className="absolute inset-[7%] overflow-hidden rounded-full border border-line shadow-[0_0_80px_-10px_rgb(255_181_71/0.35)]">
-        <img src={src} alt={alt} loading="lazy" className="h-full w-full origin-[47%_62%] scale-[1.6] object-cover object-[48%_74%]" />
+        <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover" />
         {/* Lens vignette + crosshair */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,transparent_55%,rgb(7_6_12/0.75)_100%)]" />
         <div className="pointer-events-none absolute left-1/2 top-[8%] h-[84%] w-px bg-text/20" />

@@ -60,7 +60,7 @@ export const profile = {
   github: 'https://github.com/kalebrodriguez',
   linkedin: 'https://www.linkedin.com/in/kaleb-rodriguez-8212a235a/',
   photo: {
-    src: `${import.meta.env.BASE_URL}kaleb-portrait.jpg`,
+    src: `${import.meta.env.BASE_URL}kaleb-portrait-square.jpg`,
     alt: 'Kaleb Rodriguez in a suit, sitting on the edge of a fountain on a university campus',
   },
   tagline:
