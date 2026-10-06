@@ -69,7 +69,7 @@ export function Kinetic() {
   return (
     <>
       <TopBar />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <Marquee />
         <Numbers />

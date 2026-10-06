@@ -138,7 +138,7 @@ export function Notebook() {
       {/* red margin line */}
       <div aria-hidden="true" className="pointer-events-none fixed inset-y-0 left-12 z-0 hidden w-px bg-margin sm:block" />
       <Tabs />
-      <main className="relative z-10">
+      <main className="relative z-10 overflow-x-clip">
         <Cover />
         <About />
         <Research />
